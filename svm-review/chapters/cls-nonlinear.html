@@ -1,0 +1,2105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>17&nbsp; Complex Nonlinear Boundaries – Applied Machine Learning for Tabular Data</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/cls-neural-nets.html" rel="next">
+<link href="../chapters/cls-linear.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c7488dab8eb61c0b5a1577c7c12d4487.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content="..">
+<script src="../site_libs/quarto-contrib/shinylive-0.10.11/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.10.11/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.10.11/shinylive/shinylive.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+.dev-preview-banner {
+  position: sticky; top: 0; z-index: 500;
+  display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem; align-items: baseline;
+  margin: 0 0 1.5rem; padding: 0.55rem 0.9rem;
+  background: #fdf3d8; border: 1px solid #e3c874; border-radius: 4px;
+  color: #4a3708; font-size: 0.85rem; line-height: 1.35;
+}
+.dev-preview-banner strong {
+  color: #8a5a00; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.dev-preview-banner code {
+  background: #f6e6bd; color: #4a3708; padding: 0 0.25em; font-size: 0.95em;
+}
+.dev-preview-banner a { color: #7a4a00; text-decoration: underline; }
+@media print { .dev-preview-banner { display: none; } }
+</style>
+<link href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css" rel="stylesheet">
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"><span id="sec-cls-nonlinear" class="quarto-section-identifier"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Complex Nonlinear Boundaries</span></span></h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../"></a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/aml4td/website/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/news.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">News</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/contributing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Contributing</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/whole-game.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Whole Game</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Preparation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/initial-data-splitting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Initial Data Splitting</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/missing-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Missing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/numeric-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transforming Numeric Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/categorical-predictors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Working with Categorical Predictors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/embeddings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Embeddings</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/interactions-nonlinear.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Interactions and Nonlinear Features</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Optimization</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/overfitting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Overfitting</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/resampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Measuring Performance with Resampling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/grid-search.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Grid Search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/iterative-search.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Iterative Search</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/feature-selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Feature Selection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/comparing-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Comparing Models</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Classification</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/cls-metrics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Characterizing Classification Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/cls-linear.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Generalized Linear and Additive Classifiers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/cls-nonlinear.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Complex Nonlinear Boundaries</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/cls-neural-nets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Neural Network Classifiers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/cls-trees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Classification using Trees and Rules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/cls-ensembles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Classification Ensembles</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/cls-imbalance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Class Imbalances</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/cls-case-study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Classification Case Study</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/cls-summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Classification Summary</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Regression</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Characterization</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Finalization</span></span>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-nonlinear-da" id="toc-sec-nonlinear-da" class="nav-link active" data-scroll-target="#sec-nonlinear-da"><span class="header-section-number">17.1</span> Nonlinear Discriminants</a>
+  <ul class="collapse">
+  <li><a href="#sec-naive-bayes" id="toc-sec-naive-bayes" class="nav-link" data-scroll-target="#sec-naive-bayes"><span class="header-section-number">17.1.1</span> Naive Bayes</a></li>
+  <li><a href="#sec-fda" id="toc-sec-fda" class="nav-link" data-scroll-target="#sec-fda"><span class="header-section-number">17.1.2</span> Flexible Discriminants</a></li>
+  </ul></li>
+  <li><a href="#sec-cls-knn" id="toc-sec-cls-knn" class="nav-link" data-scroll-target="#sec-cls-knn"><span class="header-section-number">17.2</span> K-Nearest Neighbors</a></li>
+  <li><a href="#sidebar-dot-products" id="toc-sidebar-dot-products" class="nav-link" data-scroll-target="#sidebar-dot-products"><span class="header-section-number">17.3</span> Sidebar: Dot Products</a></li>
+  <li><a href="#sec-cls-svm-nlin" id="toc-sec-cls-svm-nlin" class="nav-link" data-scroll-target="#sec-cls-svm-nlin"><span class="header-section-number">17.4</span> Nonlinear Support Vector Machines</a></li>
+  <li><a href="#sec-cls-nonlinear-compare" id="toc-sec-cls-nonlinear-compare" class="nav-link" data-scroll-target="#sec-cls-nonlinear-compare"><span class="header-section-number">17.5</span> Comparisons to Previous Models</a></li>
+  <li><a href="#chapter-references" id="toc-chapter-references" class="nav-link" data-scroll-target="#chapter-references">Chapter References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<div class="dev-preview-banner">
+  <strong>Draft preview</strong>
+  <span>branch <code>svm-cls-linear</code> at <code>d292056</code></span>
+  <span>Not the published book —
+    <a href="https://aml4td.org">read aml4td.org</a></span>
+  <span><a href="https://dev.aml4td.org/">all previews</a></span>
+</div>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span id="sec-cls-nonlinear" class="quarto-section-identifier"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Complex Nonlinear Boundaries</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This chapter focuses on several classes of models that naturally produce nonlinear boundaries, such as K-nearest neighbors, and support vector machines. A separate category of models, which use tree structures, also has inherently nonlinear classification boundaries. We’ll discuss those models in <a href="cls-trees.html" class="quarto-xref"><span>Chapter 19</span></a> and <a href="cls-ensembles.html" class="quarto-xref"><span>Chapter 20</span></a>. We’ll also save neural networks for the next chapter; their prominence in machine learning requires an extensive discussion.</p>
+<p>In this chapter, several recurring motifs are present across different types of models. First, this involves the use of an operation that utilizes the positive part of a function, known as “hinge” or “rectifier” functions. We’ll see these in <a href="#sec-fda" class="quarto-xref"><span>Section 17.1.2</span></a> and <a href="cls-neural-nets.html#sec-nnet-activation" class="quarto-xref"><span>Section 18.1.1</span></a>. Another element that will be encountered across different models is the kernel function, previously seen in <a href="iterative-search.html#sec-gp" class="quarto-xref"><span>Section 12.6.2</span></a>. These functions are used to quantify the distance or similarity between data points (or, more specifically, vectors). Both the K-nearest neighbor and the support vector machine (SVM) models rely on these functions. Finally, the dot product between vectors plays a critical role in the important <em>attention</em> mechanism in neural networks (<span class="quarto-unresolved-ref">?sec-attention</span>) as well as in SVM models (<span class="quarto-unresolved-ref">?sec-cls-svm</span>).</p>
+<p>To get started, the first section summarizes an old, traditional model for classification, linear discriminant analysis (LDA), and shows how it can be effectively modified to produce nonlinear class boundaries.</p>
+<section id="sec-nonlinear-da" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="sec-nonlinear-da"><span class="header-section-number">17.1</span> Nonlinear Discriminants</h2>
+<p>Discriminant analysis is a classical statistical method for classification. While its prominence in the statistical learning literature has diminished in recent decades, understanding its foundations provides valuable context for several modern and highly effective classification methods. This section focuses on linear discriminant analysis (LDA).</p>
+<p>Linear discriminant analysis <span class="citation" data-cites="mclachlan2005discriminant murphy2012machine">(<a href="#ref-mclachlan2005discriminant" role="doc-biblioref">McLachlan 2005</a>; <a href="#ref-murphy2012machine" role="doc-biblioref">Murphy 2012</a>)</span> produces linear classification boundaries and can be motivated via Bayes’ Rule. Let’s say that our training set predictors for class <span class="math inline">k</span> are contained in the random variable vector <span class="math inline">X_k</span> with <span class="math inline">p</span> elements. LDA assumes that the predictor distributions within each class follow a multivariate Gaussian distribution with class-specific mean vectors but a common covariance matrix across all classes. Formally, for class <span class="math inline">k</span>, the conditional distribution of the predictors given class membership is <span class="math inline">X_k \sim N(\boldsymbol{\mu}_k, \boldsymbol{\Sigma})</span>.</p>
+<p>To classify a new observation with predictor vector <span class="math inline">\boldsymbol{x}</span>, LDA applies Bayes’ theorem to compute the posterior probability of class membership. Given a prior probability <span class="math inline">Pr[Y = k]</span> for class <span class="math inline">k</span>, the posterior probability is:</p>
+<p><span id="eq-discrim"><span class="math display">
+Pr[Y = k |\boldsymbol{x}] =\frac{Pr[Y = k]Pr[\boldsymbol{x}|Y = k]}{\sum\limits_{l=1}^C Pr[Y = l]Pr[\boldsymbol{x}|Y = l]}
+\tag{17.1}</span></span></p>
+<p>This equation is straightforward to calculate. The parameters <span class="math inline">\boldsymbol{\mu}_k</span> and <span class="math inline">\boldsymbol{\Sigma}</span> are estimated from the training data using their maximum likelihood estimates: the class-specific sample mean vectors <span class="math inline">\bar{\boldsymbol{x}}_k</span> and the pooled sample covariance matrix <span class="math inline">\boldsymbol{S}</span>, respectively. The class-conditional densities (<span class="math inline">Pr[\boldsymbol{x}|Y]</span>) are then evaluated using the multivariate normal probability density function, which modern statistical software computes efficiently. In practice, computational efficiency can be improved by calculating only the numerator of <a href="#eq-discrim" class="quarto-xref">Equation&nbsp;<span>17.1</span></a> for each class, then normalizing these values to ensure the posterior probabilities sum to 1. For a new observation <span class="math inline">\boldsymbol{x}</span>, the class with the maximum posterior probability is assigned as the predicted class.</p>
+<p>Alternatively, we can frame the prediction in terms of the discriminant function:</p>
+<p><span id="eq-discrim-func"><span class="math display">
+D_k(\boldsymbol{x}) = \boldsymbol{x}'\boldsymbol{\Sigma}^{-1}\boldsymbol{\mu}_k + \frac{1}{2}\boldsymbol{\mu}_k'\boldsymbol{\Sigma}^{-1}\boldsymbol{\mu}_k + \log\left(Pr[Y = k]\right)
+\tag{17.2}</span></span></p>
+<p>The discriminant values are conceptually similar to the linear predictor in logistic regression, taking values on the real line, with larger values corresponding to higher posterior probabilities. The predicted class is determined by identifying which discriminant function yields the largest value.</p>
+<p>A notable advantage of LDA is its explicit modeling of the predictor covariance structure through <span class="math inline">\boldsymbol{\Sigma}</span>. This characteristic renders the method robust to moderate levels of multicollinearity among predictors. Furthermore, the framework naturally extends to multi-class problems.</p>
+<p>However, LDA has important limitations. The method requires that <span class="math inline">\boldsymbol{\Sigma}</span> be non-singular (invertible). When the training set contains fewer observations than predictors (<span class="math inline">n &lt; p</span>) or when perfect linear dependencies exist among predictors, the sample covariance matrix becomes singular and the discriminant functions cannot be computed. Additionally, the Gaussian distributional assumption is fundamental to the method’s theoretical justification. While binary indicator variables can technically be included in the model (as they are numeric), their discrete, non-Gaussian nature violates the model assumptions and undermines the probabilistic interpretation of the results. For datasets with categorical predictors or high-dimensional settings where <span class="math inline">n &lt; p</span>, alternative classification methods may be more appropriate as we will see later.</p>
+<p>As presented, LDA is limited as a classification tool. Its assumption of a common covariance matrix across classes restricts it to producing linear decision boundaries. While nonlinear boundaries could be induced through feature engineering (e.g., adding polynomial or interaction terms), such an approach would be better done using logistic regression.</p>
+<p>Nevertheless, the discriminant analysis framework has led to extensions that address the various limitations of LDA. Quadratic discriminant analysis (QDA) <span class="citation" data-cites="ghojogh2019linear">(<a href="#ref-ghojogh2019linear" role="doc-biblioref">Ghojogh and Crowley 2019</a>)</span> relaxes the assumption of a common covariance matrix, allowing each class to have its own covariance structure: <span class="math inline">X_k \sim N(\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)</span>. This modification results in quadratic decision boundaries, providing greater flexibility at the cost of estimating additional parameters. Robust variants of both LDA and QDA have been developed to mitigate the influence of outliers on parameter estimation <span class="citation" data-cites="hubert2024robust">(<a href="#ref-hubert2024robust" role="doc-biblioref">Hubert, Raymaekers, and Rousseeuw 2024</a>)</span>, addressing the well-known sensitivity of maximum likelihood estimates to extreme observations. Additionally, regularized discriminant analysis methods <span class="citation" data-cites="friedman1989regularized pang2009shrinkage">(<a href="#ref-friedman1989regularized" role="doc-biblioref">Friedman 1989</a>; <a href="#ref-pang2009shrinkage" role="doc-biblioref">Pang, Tong, and Zhao 2009</a>)</span> introduce penalty terms that shrink the covariance matrix estimates, improving stability and predictive performance, particularly when sample sizes are modest relative to the number of predictors.</p>
+<p>Two extensions of discriminant analysis are practically useful. The first, naive Bayes classification, represents a simplification that assumes conditional independence among predictors within each class. The second, flexible discriminant analysis (FDA), is a generalization of the LDA framework. FDA can accommodate nonlinear decision boundaries, perform implicit feature selection, and incorporate various modeling strategies, making it a considerably more versatile tool for classification problems. These methods are discussed in the following sections.</p>
+<section id="sec-naive-bayes" class="level3" data-number="17.1.1">
+<h3 data-number="17.1.1" class="anchored" data-anchor-id="sec-naive-bayes"><span class="header-section-number">17.1.1</span> Naive Bayes</h3>
+<p>While LDA estimates the class-conditional density <span class="math inline">Pr[\boldsymbol{x}|Y = k]</span> using a multivariate Gaussian distribution, naive Bayes <span class="citation" data-cites="hand2001idiot">(<a href="#ref-hand2001idiot" role="doc-biblioref">Hand and Yu 2001</a>)</span> adopts an alternative approach by decomposing this joint density into a product of univariate marginal distributions:</p>
+<p><span id="eq-ind-probs"><span class="math display">
+Pr[\boldsymbol{x}|Y = k] = \prod_{j=1}^p Pr[x_j|Y = k]
+\tag{17.3}</span></span></p>
+<p>This formulation assumes conditional independence among all predictors within each class; i.e., the predictors are all statistically independent of one another. This assumption is often violated in practice. Despite this seemingly restrictive assumption, naive Bayes classifiers can occasionally perform surprisingly well in practice.</p>
+<p>The primary advantage of the conditional independence assumption is that it relaxes the distributional requirements for individual predictors. Unlike LDA, which requires joint multivariate normality, naive Bayes allows each predictor to follow its own distribution, which need not be Gaussian. Moreover, these distributions do not even need to be fully parametric.</p>
+<p>For continuous predictors, kernel density estimation <span class="citation" data-cites="Silverman86 chen2017tutorial">(<a href="#ref-Silverman86" role="doc-biblioref">Silverman 1986</a>; <a href="#ref-chen2017tutorial" role="doc-biblioref">Chen 2017</a>)</span> provides a flexible, nonparametric approach to estimating <span class="math inline">Pr[x_j|Y = k]</span>. Kernel density estimators are smoothing methods that adaptively characterize the empirical distribution of the data. A kernel function <span class="math inline">K(\cdot)</span> is a non-negative, symmetric function that integrates to one and serves as a weighting scheme<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Common kernel functions are:</p>
+<ul>
+<li>The <strong>uniform kernel</strong>, which assigns equal weight to all observations within a fixed range</li>
+<li>The <strong>Gaussian kernel</strong>, <span class="math inline">K(u) = \frac{1}{\sqrt{2\pi}}\exp(-u^2/2)</span>, which assigns weights that decrease exponentially with distance from the point of interest</li>
+</ul>
+<p>The kernel density estimate at a point <span class="math inline">u</span> is constructed as:</p>
+<p><span class="math display">
+\hat{f}(u) = \frac{1}{nh}\sum_{i=1}^n K\left(\frac{u - x_i}{h}\right)
+</span></p>
+<p>where <span class="math inline">n</span> is the number of observations, <span class="math inline">x_i</span> are the observed training set data points, and <span class="math inline">h</span> is the bandwidth parameter that controls the smoothness of the estimate. We’ll come back to the bandwidth parameter shortly.</p>
+<p>For example, <a href="#fig-densities" class="quarto-xref">Figure&nbsp;<span>17.1</span></a> displays estimated densities for the minimum vapor pressure variable across three subsets of the data. Kernel density estimates are shown in blue, while fully parametric Gaussian density estimates (assuming <span class="math inline">N(\mu, \sigma)</span>) are shown in orange. The left-hand panel presents the entire training set, which exhibits modest right skewness. Both estimation approaches provide reasonable approximations for vapor pressure values<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> above 200. However, the Gaussian estimate lacks the flexibility to adequately capture the density in the middle of the range, and both methods perform poorly for values below 200, where the data are sparse.</p>
+<p>The middle panel shows the density for non-forested locations. The histogram suggests these data are approximately trimodal with left skewness, and the kernel density estimate successfully captures these multiple modes. In contrast, the Gaussian does not capture the multimodal structure, and relying on this parametric assumption would likely result in underfitting and poor probability estimates for classification.</p>
+<p>The right-hand panel displays the density for forested locations, which exhibits right skewness. The parametric Gaussian approach provides a particularly poor fit for the lower half of this distribution, where the bulk of the data reside. The kernel density estimate adapts to the asymmetry and provides a better representation of the empirical distribution.</p>
+<p>These examples illustrate the potential advantage of kernel density estimation within the naive Bayes framework: the ability to accommodate non-Gaussian, multimodal, and skewed distributions without requiring distributional transformations or parametric assumptions that may be violated in practice.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-densities" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Faceted density plots for the minimum vapor predictor, with panels for the entire training set, non-forested locations, and forested locations. Each panel overlays a flexible kernel density estimate and a smooth parametric Gaussian curve on a histogram. The kernel estimate captures multimodal and skewed shapes the Gaussian misses, especially for the trimodal non-forested distribution and the right-skewed forested distribution." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-densities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cls-nonlinear_files/figure-html/fig-densities-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%" alt="Faceted density plots for the minimum vapor predictor, with panels for the entire training set, non-forested locations, and forested locations. Each panel overlays a flexible kernel density estimate and a smooth parametric Gaussian curve on a histogram. The kernel estimate captures multimodal and skewed shapes the Gaussian misses, especially for the trimodal non-forested distribution and the right-skewed forested distribution.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-densities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.1: Parametric and nonparametric density estimates for the minimum vapor predictor, shown separately for the entire training set and then for each class. The blue line is the nonparametric estimate, and the orange curve is the traditional Gaussian estimate.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The kernel density estimator contains a tuning parameter: the bandwidth <span class="math inline">h</span>, which controls the degree of smoothing applied to the density estimate. The bandwidth determines the effective width of the kernel’s influence around each observation. Small bandwidth values produce density estimates that closely track the observed data, potentially capturing fine-scale features but risking variability and overfitting. Conversely, large bandwidth values distribute the kernel weight over a broader range, yielding smoother density estimates that may obscure multimodality or other important distributional characteristics.</p>
+<p>Several data-driven methods exist for selecting the bandwidth that optimizes specific criteria. Common approaches include minimizing an estimate of the mean integrated squared error or using cross-validation <span class="citation" data-cites="park1990comparison">(<a href="#ref-park1990comparison" role="doc-biblioref">Park and Marron 1990</a>)</span>. These default bandwidth selection methods are designed to produce generally accurate density estimates.</p>
+<p>However, the bandwidth that yields the most accurate density estimate may not necessarily produce the best classification performance. The objective in density estimation—minimizing the mean squared error—differs from the classification objective of minimizing prediction error. To address this potential misalignment, the bandwidth can be treated as a tuning parameter in the naive Bayes model. Rather than directly tuning <span class="math inline">h</span>, it is often more convenient to tune a bandwidth adjustment factor that is a multiplier of the bandwidth. A value greater than 1.0 encourages more smoothing of the data, while smaller values make very bumpy densities.</p>
+<p>Since naive Bayes does not assume much about <span class="math inline">Pr[x_j|Y = k]</span>, categorical predictors can be readily incorporated into the model. For a categorical predictor, the conditional probabilities are estimated directly from the observed frequencies within each class. <a href="cls-linear.html#fig-counties" class="quarto-xref">Figure&nbsp;<span>16.3</span></a> showed the raw probabilities associated with the forested class (i.e., <span class="math inline">Pr[y = forested]</span>).</p>
+<p>However, sparse data can create computational difficulties. Some counties contain no forested locations, while others have very few locations at all. When a particular predictor-class combination is unobserved in the training data, the estimated probability is zero. Due to the multiplicative structure in <a href="#eq-ind-probs" class="quarto-xref">Equation&nbsp;<span>17.3</span></a>, a single zero probability causes the entire class-conditional probability to equal zero, regardless of the values of other predictors. This results in the class receiving zero posterior probability, which is clearly problematic, especially when it occurs with all classes.</p>
+<p>Several smoothing methods address this issue by adjusting probability estimates away from the boundaries of zero and one. One approach employs a Beta-Binomial model, as described in <a href="iterative-search.html#eq-beta-bin-mean" class="quarto-xref">Equation&nbsp;<span>12.4</span></a>, which shrinks extreme estimates toward more moderate values. For example, consider a county with ten locations, none of which are forested. The Beta-Binomial method with <span class="math inline">\alpha = 1</span> and <span class="math inline">\beta = 3</span> would pull the estimate from 0.0% to 7.1%.</p>
+<p>Alternatively, Laplace smoothing <span class="citation" data-cites="Manning2009">(<a href="#ref-Manning2009" role="doc-biblioref">Manning, Raghavan, and Schutze 2009, sec. 11.3.2</a>)</span> provides another approach:</p>
+<p><span id="eq-laplace-smooth"><span class="math display">
+\hat{p}_{k} = \frac {x_k+\alpha }{n_k+\alpha C_{x}}
+\tag{17.4}</span></span></p>
+<p>where <span class="math inline">C_{x}</span> is the number of levels of the qualitative predictor and <span class="math inline">x_k</span> and <span class="math inline">n_k</span> are the number of events and locations, respectively. Here, with <span class="math inline">C_x = 2</span> and <span class="math inline">\alpha = 1</span>, the new estimate is 8.3%.</p>
+<p>Despite the potentially unrealistic assumption of conditional independence among predictors, naive Bayes classifiers can demonstrate competitive predictive performance with other methods. In addition, naive Bayes models can be computationally efficient since many of the calculations can be done in parallel. Depending on how the conditional densities are computed, they can be easily added to database tables, and the final prediction can be executed using highly efficient SQL.</p>
+<p>One potential downside for this model is that there is a tendency for the class probability estimates to be seriously miscalibrated. Since we treat the predictors as independent entities, we end up multiplying many probabilities together. When the predictors <em>are</em> related, this means including redundant terms. When any set of probabilities is multiplied together, there is a tendency for the values to become polar; the products tend to migrate towards zero or one. This may not affect the ability of the model to separate classes, but it will compromise the accuracy of the probability estimates. Many predictions, when incorrect, are <em>confidently</em> incorrect.</p>
+<p><a href="#fig-nb-probs" class="quarto-xref">Figure&nbsp;<span>17.2</span></a> illustrates the probability distribution and calibration performance for one model candidate applied to the forestation data. The left panel demonstrates that the predicted probabilities exhibit a bimodal distribution, with the majority of observations concentrated near the boundaries of zero and one, while relatively few observations fall in the intermediate probability range. The right panel presents the corresponding calibration curve, which reveals severe miscalibration. Specifically, observations assigned predicted probabilities near zero exhibit observed event rates of approximately 10%, while those with predicted probabilities approaching one show similarly discordant observed rates. The intermediate probabilities are no better, with observed event rates clustering near 0.5 across multiple bins regardless of predicted probability. The Brier score for these data is poor (0.128) but the area under the ROC curve (0.922) shows good separation of the classes by the model.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-nb-probs" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two-panel figure. The left panel shows histograms of predicted forestation probabilities faceted by class, revealing a strongly bimodal distribution with most predictions concentrated near zero and one. The right panel shows a calibration curve that deviates severely from the diagonal, indicating that predicted probabilities do not match observed event rates." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nb-probs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cls-nonlinear_files/figure-html/fig-nb-probs-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Two-panel figure. The left panel shows histograms of predicted forestation probabilities faceted by class, revealing a strongly bimodal distribution with most predictions concentrated near zero and one. The right panel shows a calibration curve that deviates severely from the diagonal, indicating that predicted probabilities do not match observed event rates.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nb-probs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.2: An example of how the probability estimates produced by naive Bayes can have poor calibration properties.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>To address these calibration issues, an initial feature filter could be helpful. Reducing the number of predictors may improve probability estimates by mitigating potential overfitting or reducing noise from uninformative predictors. For the forestation data, a random forest model was computed (within each resample), and predictors were ranked according to their permutation importance scores. We can choose a proportion of parameters to retain and then fit our naive Bayes models. Proportions of 20%, 40%, …, 100% were used during the tuning process. <a href="#fig-forested-rf-imp" class="quarto-xref">Figure&nbsp;<span>17.3</span></a> displays the resulting importance scores, with error bars representing 90% confidence intervals estimated using the 10 replicate values produced during cross-validation.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-forested-rf-imp" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Horizontal dot plot with error bars showing random forest importance scores for each predictor. Annual precipitation has by far the highest score. Maximum vapor and longitude form a second tier. Several predictors cluster at intermediate values, while county, year, eastness, and westness show low importance. Error bars represent 90% confidence intervals from cross-validation replicates." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-forested-rf-imp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cls-nonlinear_files/figure-html/fig-forested-rf-imp-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Horizontal dot plot with error bars showing random forest importance scores for each predictor. Annual precipitation has by far the highest score. Maximum vapor and longitude form a second tier. Several predictors cluster at intermediate values, while county, year, eastness, and westness show low importance. Error bars represent 90% confidence intervals from cross-validation replicates.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-forested-rf-imp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.3: Aggregate feature rankings using a random forest importance score on the forestation data. The bands reflect 90% confidence intervals computed using replicates over cross-validation.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The results show that, according to random forest, annual precipitation has, by far, the largest effect on the prediction function. The second tier of importance includes maximum vapor pressure and longitude predictors, which exhibit nearly equivalent importance scores. A moderate cluster of predictors shows intermediate importance values, while several predictors—including county, year, eastness, and westness—yield low importance scores.</p>
+<p>It is important to note that variable importance measures are model-specific and should not be interpreted as universal or absolute assessments of predictor relevance<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. In this context, the random forest importance scores serve as a filtering mechanism to identify and remove potentially irrelevant predictors prior to fitting the classification model, rather than as definitive decisions regarding predictor-response relationships.</p>
+<p>Additionally, we have summarized the results over resamples for visualization. In practice, we execute the random forest within each resample and then fit the model on that resample’s listing of which predictors are “important”. We <em>do not</em> compute the importance once and use the same ranking across resamples.</p>
+<p>For the forestation data, the naive Bayes kernel adjustment parameter was tuned over values ranging from 0.5 to 1.5, while the Laplace smoothing parameter was held constant at <span class="math inline">\alpha = 1</span>. Beyond feature selection, no additional preprocessing was applied; the categorical counties remained as-is, and no transformations were applied to the data.</p>
+<p>The tuning results for Brier score and ROC AUC are presented in <a href="#fig-nb-tune" class="quarto-xref">Figure&nbsp;<span>17.4</span></a>. Both metrics achieved optimal performance when the full predictor set was retained, with substantial performance degradation observed when only 20% of predictors were included. Across all feature selection thresholds, the results favor smaller kernel bandwidths (more wiggly). However, the magnitude of improvement attributable to bandwidth adjustment is modest relative to the effect of feature selection proportion.</p>
+<p>The predictions for the <em>best</em> candidate are those shown in <a href="#fig-nb-probs" class="quarto-xref">Figure&nbsp;<span>17.2</span></a>. As noted there, the Brier score was mediocre while the ROC curve results indicate that the model can do a good job at qualitatively separating the classes.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-nb-tune" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Line plot of naive Bayes tuning results with Brier score on the y-axis and the proportion of predictors retained on the x-axis, with lines distinguished by kernel bandwidth. Both Brier score and ROC AUC are best when all predictors are retained, and performance degrades substantially at 20% retention. Smaller bandwidths are slightly favored across all thresholds." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nb-tune-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cls-nonlinear_files/figure-html/fig-nb-tune-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%" alt="Line plot of naive Bayes tuning results with Brier score on the y-axis and the proportion of predictors retained on the x-axis, with lines distinguished by kernel bandwidth. Both Brier score and ROC AUC are best when all predictors are retained, and performance degrades substantially at 20% retention. Smaller bandwidths are slightly favored across all thresholds.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nb-tune-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.4: Naive Bayes tuning results for the forestation data.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>It is also worth noting that, for this model, the Brier and ROC AUC values point to similar findings. Across all of the candidates, the correlation between these metrics was -0.95; they tend to agree very often. The correlation between these metrics and cross-entropy was slightly lower: -0.73 and 0.84 for the Brier score and the ROC AUC, respectively.</p>
+<p>Now, let’s turn our attention to the other notable variation of LDA: flexible discriminant analysis.</p>
+<p><a href="https://tidymodels.aml4td.org/chapters/cls-nonlinear.html#sec-naive-bayes"><i class="fa-brands fa-r-project fa-Large" aria-label="r-project"></i></a></p>
+</section>
+<section id="sec-fda" class="level3" data-number="17.1.2">
+<h3 data-number="17.1.2" class="anchored" data-anchor-id="sec-fda"><span class="header-section-number">17.1.2</span> Flexible Discriminants</h3>
+<p>Flexible discriminant analysis (FDA) by <span class="citation" data-cites="hastie1994flexible">Hastie, Tibshirani, and Buja (<a href="#ref-hastie1994flexible" role="doc-biblioref">1994</a>)</span> extends LDA to accommodate more complex discriminant functions. The derivation involves substantial linear algebra; you can skip to the “Important” box below for the key concepts.</p>
+<p><span class="citation" data-cites="hand1981discrimination">Hand (<a href="#ref-hand1981discrimination" role="doc-biblioref">1981</a>)</span> and <span class="citation" data-cites="breiman1984nonlinear">Breiman and Ihaka (<a href="#ref-breiman1984nonlinear" role="doc-biblioref">1984</a>)</span> demonstrated that the LDA model can be estimated through a series of basic linear regressions. To do this, we first construct an <span class="math inline">n_{tr}\times C</span> indicator matrix <span class="math inline">\boldsymbol{Y}</span> where each column contains binary indicators for the corresponding class. Next, create a <span class="math inline">C\times (C-1)</span> matrix of initial “scores” <span class="math inline">\boldsymbol{\Omega}</span> using a contrast function (see <a href="categorical-predictors.html#sec-indicators" class="quarto-xref"><span>Section 6.2</span></a>). <span class="citation" data-cites="mda_2024">Hastie and Tibshirani (<a href="#ref-mda_2024" role="doc-biblioref">2024</a>)</span> employ a Helmert-like contrast matrix. For <span class="math inline">C=3</span> classes, the Helmert contrast is</p>
+<p><span class="math display">
+Helmert =
+\begin{pmatrix}
+-1 &amp; -1 \\
+\phantom{-}  1 &amp; -1 \\
+\phantom{-}  0 &amp;\phantom{-}   2 \\
+\end{pmatrix}
+</span></p>
+<p>which is then normalized using a function of training set class proportions. For example, with <span class="math inline">C = 3</span> equally frequent classes, the initial score matrix is:</p>
+<p><span class="math display">
+\boldsymbol{\Omega} =
+\begin{pmatrix}
+\phantom{-} 1.22 &amp; -0.71 \\
+-1.22 &amp; -0.71 \\
+\phantom{-} 0.00 &amp; \phantom{-} 1.41 \\
+\end{pmatrix}
+</span></p>
+<p>Being a contrast matrix, the column means are zero and the covariances between columns are zero.</p>
+<p>The modified response matrix for linear regression is computed as <span class="math inline">\boldsymbol{\Omega}^* = \boldsymbol{Y}\boldsymbol{\Omega}</span>. Using the predictor matrix <span class="math inline">\boldsymbol{X}</span> and the columns of <span class="math inline">\boldsymbol{\Omega}^*</span> as outcomes, multivariate linear regression yields coefficient matrix <span class="math inline">\widehat{\boldsymbol{B}}</span> and fitted values <span class="math inline">\hat{\boldsymbol{\Omega}} = \boldsymbol{X}\hat{\boldsymbol{B}}</span>.</p>
+<p>An eigendecomposition of <span class="math inline">\boldsymbol{\Omega}'\hat{\boldsymbol{\Omega}}</span> produces eigenvalues and a matrix of eigenvectors <span class="math inline">\boldsymbol{\Phi}</span>.</p>
+<p>The matrix <span class="math inline">\boldsymbol{\Phi}</span> scales the linear regression predictions to approximate the discriminant functions in <a href="#eq-discrim-func" class="quarto-xref">Equation&nbsp;<span>17.2</span></a>. For a new sample <span class="math inline">\boldsymbol{x}</span>, the vector of FDA discriminant functions is:</p>
+<p><span id="eq-fda-discrim"><span class="math display">
+\boldsymbol{D}(\boldsymbol{x}) \approx \hat{\boldsymbol{\Omega}}\Phi = \boldsymbol{x}'\hat{\boldsymbol{B}}\Phi
+\tag{17.5}</span></span></p>
+<p>This <span class="math inline">(C-1) \times 1</span> vector contains entries for all but the reference class<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Class probabilities are computed from the discriminant functions (typically using the softmax transformation). We compute the last probability estimate using <span class="math inline">\hat{\pi}_C = 1 - \sum_k^{C-1}\hat{\pi}_k</span>.</p>
+<div class="important-box">
+<p>The magic in <span class="citation" data-cites="hastie1994flexible">Hastie, Tibshirani, and Buja (<a href="#ref-hastie1994flexible" role="doc-biblioref">1994</a>)</span> is that linear regression can be replaced with any regression method while maintaining the discriminant analysis framework. For example, ridge or lasso regression can produce improved predictions that are then converted to class probabilities by rescaling with <span class="math inline">\boldsymbol{\Phi}</span> as in <a href="#eq-fda-discrim" class="quarto-xref">Equation&nbsp;<span>17.5</span></a>.</p>
+</div>
+<p><span class="citation" data-cites="hastie1994flexible">Hastie, Tibshirani, and Buja (<a href="#ref-hastie1994flexible" role="doc-biblioref">1994</a>)</span> originally implemented FDA using multivariate adaptive regression splines (MARS) and a penalized spline method called Bruto. In practice, we have found that the best application of FDA uses MARS, which will be discussed further in <span class="quarto-unresolved-ref">?sec-mars</span>.</p>
+<p>As we will see in <span class="quarto-unresolved-ref">?sec-reg-nonlinear</span>, MARS is a forward stepwise procedure that sequentially adds pairs of features for each predictor. These features are derived via a <em>hinge function</em>: <span class="math inline">h(x) = xI(x &gt; 0)</span>. At each iteration, MARS identifies the optimal predictor and split point <span class="math inline">a</span>, then adds two terms: <span class="math inline">h(x - a)</span> and <span class="math inline">h(a - x)</span>. The first term equals zero for <span class="math inline">x &lt; a</span>, while the second equals zero for <span class="math inline">x &gt; a</span>. <a href="#fig-fda-hinge" class="quarto-xref">Figure&nbsp;<span>17.5</span></a> illustrates these “left” and “right” hinge functions.</p>
+<div id="fig-fda-hinge" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fda-hinge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="figure-content">
+<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| label: shiny-fda-hinge
+#| viewerHeight: 600
+#| viewerWidth: "100%"
+#| standalone: true
+#| fig-alt: Examples of a single set of MARS features. 
+library(shiny)
+library(bslib)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+
+source("https://raw.githubusercontent.com/aml4td/website/main/R/shiny-setup.R")
+ui &lt;- page_fillable(
+  theme = bs_theme(bg = "#fcfefe", fg = "#595959"),
+  padding = "1rem",
+  layout_columns(
+    fill = FALSE,
+    col_widths = breakpoints(xs = c(-2, 8, -2), sm = 4),
+    sliderInput(
+      "beta_1",
+      label = "Left slope",
+      min = -4.0,
+      max = 4.0,
+      step = 0.5,
+      value = 1
+    ),
+    sliderInput(
+      "beta_2",
+      label = "Right slope",
+      min = -4.0,
+      max = 4.0,
+      step = 0.5,
+      value = 1
+    ),
+    sliderInput(
+      "split",
+      label = "Split",
+      min = 0,
+      max = 10,
+      step = 0.1,
+      value = 5
+    )
+  ),
+  layout_columns(
+    fill = FALSE,
+    col_widths = breakpoints(xs = c(-2, 8, -2)),
+    as_fill_carrier(plotOutput("plots"))
+  )
+)
+
+server &lt;- function(input, output) {
+  theme_set(theme_bw())
+  output$plots &lt;-
+    renderPlot(
+      {
+        dat &lt;- tibble(x = seq(0, 10, by = 0.05))
+
+        h_right &lt;- function(x, a) ifelse(x &lt; a, a - x, 0)
+        h_left &lt;- function(x, a) ifelse(x &gt; a, x - a, 0)
+
+        split &lt;- input$split
+        beta_0 &lt;- 0
+        beta_1 &lt;- input$beta_1
+        beta_2 &lt;- input$beta_2
+
+        feat &lt;-
+          dat |&gt;
+          mutate(
+            left = h_left(x, split),
+            right = h_right(x, split),
+            pred = beta_0 + beta_1 * left + beta_2 * right
+          )
+
+        p &lt;-
+          feat |&gt;
+          pivot_longer(
+            cols = c(left, right, pred),
+            names_to = "side",
+            values_to = "value"
+          ) |&gt;
+          mutate(
+            group = case_when(
+              side == "left" ~ "Left Hinge: h(x - a)",
+              side == "right" ~ "Right Hinge: h(a - x)",
+              TRUE ~ "Regression Equation"
+            ),
+            group = factor(
+              group,
+              levels = c(
+                "Left Hinge: h(x - a)",
+                "Right Hinge: h(a - x)",
+                "Regression Equation"
+              )
+            )
+          ) |&gt;
+          ggplot(aes(x, value)) +
+          geom_line() +
+          geom_vline(xintercept = split, lty = 3) +
+          facet_wrap(~group, ncol = 1, scale = "free_y") +
+          labs(x = "Original Predictor", y = "Feature Value")
+
+        print(p)
+      },
+      res = 100
+    )
+}
+
+app &lt;- shinyApp(ui, server)
+
+app</code></pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fda-hinge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.5: An example of how MARS partitions the predictor space into two distinct regions, each with its own regression line that connects at the split point. For the bottom panel, we assume an intercept of <span class="math inline">\beta_0 = 0</span>.
+</figcaption>
+</figure>
+</div>
+<p>As seen in the figure, the hinge feature <span class="math inline">h(x − a)</span> isolates the effect of the predictor to values greater than <span class="math inline">a</span>. Likewise, its companion feature <span class="math inline">h(a − x)</span> restricts the effect of the predictor only when <span class="math inline">x &lt; a</span>. If <span class="math inline">x</span> is the first predictor selected by MARS, these functions create a flexible segmented regression:</p>
+<p><span class="math display">
+y_i = \beta_0 + \beta_1 h(x_{i1} - a) + \beta_2 h(a - x_{i1}) + \epsilon_i
+</span></p>
+<p>which is estimated using ordinary linear regression. The figure illustrates the impact of different values of <span class="math inline">\beta_1</span> and <span class="math inline">\beta_2</span>.</p>
+<p>The “growing” phase of MARS creates new pairs of features by evaluating all prospective pairs, retaining the pair that most improves model fit, and repeating until a user-specified maximum number of terms is reached.</p>
+<p>During the training process, MARS may split the same predictor multiple times when the predictor-response relationship exhibits substantial nonlinearity. For categorical predictors with <span class="math inline">C</span> levels, MARS automatically generates <span class="math inline">C</span> binary indicators that can then be split. The algorithm can also include a predictor in its original form (without hinge functions) if that representation best improves the model at a given iteration. The maximum number of model terms is an important tuning parameter that controls model complexity.</p>
+<p>Thus far, we have described MARS when it is constrained to produce an <em>additive</em> model (i.e., where each feature depends on a single predictor). MARS can also generate interaction terms. After selecting an initial pair of hinge functions on one predictor, the algorithm conducts a secondary search over all other predictors (and their candidate split points) to find the combination that most improves the model. This produces four new features, each representing a distinct two-dimensional region of the predictor space. The degree of interaction (typically one or two) is a tuning parameter; higher-order interactions are possible but computationally prohibitive.</p>
+<p>Following the growing phase, MARS performs a backward pass that sequentially removes terms using <em>generalized cross-validation</em> (GCV), an efficient approximation to leave-one-out cross-validation that is available when parameters are estimated by ordinary least squares <span class="citation" data-cites="golub1979generalized">(<a href="#ref-golub1979generalized" role="doc-biblioref">Golub, Heath, and Wahba 1979</a>)</span>. GCV quantifies the increase in prediction error when a given term is removed. During pruning, one or both members of a hinge pair may be removed. The final model consists of the retained features, their estimated coefficients, and the <span class="math inline">\Phi</span> matrix, which together define the prediction function.</p>
+<p>FDA-MARS models can produce class boundaries that are segmented or trapezoidal. For example, the “Medium Complexity” and “High Complexity” panels in <a href="cls-linear.html#fig-cls-boundaries" class="quarto-xref">Figure&nbsp;<span>16.1</span></a> were generated using FDA-MARS, with interactions and differing numbers of retained features.</p>
+<p>Regarding preprocessing, MARS internally converts categorical predictors to binary indicators, so this transformation should not be done prior to model fitting. Since MARS estimates feature coefficients using ordinary least squares, standard preprocessing techniques for linear models apply. For instance, transforming predictors to improve symmetry may enhance performance. Missing values must also be imputed prior to modeling.</p>
+<p>MARS performs automatic feature selection: if a predictor is never used in a basis function or if all terms containing that predictor are removed during pruning, the final model is independent of that predictor. This property extends to FDA-MARS. As illustrated in <a href="feature-selection.html#fig-irrelevant-predictors" class="quarto-xref">Figure&nbsp;<span>13.1</span></a>, irrelevant predictors can be included during training without adverse effects, eliminating the need for a separate feature selection step. However, including irrelevant features will increase computation time. This may or may not have a practical impact, depending on the data set size and number of irrelevant features.</p>
+<p>For using MARS with FDA with our forestation data, we initially generated a total of 200 features (apart from the intercept) during the growing phase. To tune the model, we considered additive and interaction models as well as using forward and backward removal strategies for the pruning phase. The number of retained terms was optimized to be between 2 and 50 final model terms.</p>
+<p>We can see how this worked out in <a href="#fig-fda-tune" class="quarto-xref">Figure&nbsp;<span>17.6</span></a>. Performance leveled off around 25-35 terms for each pruning method, with forward selection showing a tiny advantage for these data. Models with interaction effects were uniformly more successful than additive models. An interaction model using forward selection and 30 terms appears to be a reasonable choice. This configuration had an estimated Brier score of 0.083 and an area under the ROC curve of 0.95.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-fda-tune" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Faceted line plot of FDA-MARS tuning results with two panels for forward and backward selection pruning. Brier score is on the y-axis and the number of model terms on the x-axis, with separate lines for additive and interaction model types. Performance levels off around 25 to 35 terms, with interaction models consistently outperforming additive models in both panels." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fda-tune-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cls-nonlinear_files/figure-html/fig-fda-tune-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%" alt="Faceted line plot of FDA-MARS tuning results with two panels for forward and backward selection pruning. Brier score is on the y-axis and the number of model terms on the x-axis, with separate lines for additive and interaction model types. Performance levels off around 25 to 35 terms, with interaction models consistently outperforming additive models in both panels.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fda-tune-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.6: FDA-MARS tuning results for the forestation data.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Once the FDA-MARS model was fit to the training set, the result was 25 total coefficients. The implementation of MARS checks several stopping conditions for the growing phase based on the coefficient of determination (a.k.a. R<sup>2</sup>), including:</p>
+<ul>
+<li>Reached a R<sup>2</sup> of 0.999 or more.</li>
+<li>No new term increases R<sup>2</sup></li>
+<li>Adding a term changes R<sup>2</sup> by less than 0.001.</li>
+</ul>
+<p>The last condition triggered the training procedure to stop at 25 model terms instead of the 30 that were requested. Of these terms, 6 used a single predictor and 18 were interaction terms. The categorical predictor (county) was used 3 times in both main effects and interactions. To give the reader a sense of what the linear regression model looks like, <a href="#tbl-fda-coefs" class="quarto-xref">Table&nbsp;<span>17.1</span></a> shows the set of coefficients, the model terms, and split points.</p>
+<div class="columns">
+<div class="column" style="width:10%;">
+
+</div><div class="column" style="width:80%;">
+<div id="tbl-fda-coefs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-fda-coefs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="rqnejfhcry" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rqnejfhcry table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#rqnejfhcry thead, #rqnejfhcry tbody, #rqnejfhcry tfoot, #rqnejfhcry tr, #rqnejfhcry td, #rqnejfhcry th {
+  border-style: none;
+}
+
+#rqnejfhcry p {
+  margin: 0;
+  padding: 0;
+}
+
+#rqnejfhcry .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#rqnejfhcry .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#rqnejfhcry .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#rqnejfhcry .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#rqnejfhcry .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rqnejfhcry .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rqnejfhcry .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rqnejfhcry .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#rqnejfhcry .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#rqnejfhcry .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#rqnejfhcry .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#rqnejfhcry .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#rqnejfhcry .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#rqnejfhcry .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#rqnejfhcry .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#rqnejfhcry .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#rqnejfhcry .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#rqnejfhcry .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#rqnejfhcry .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rqnejfhcry .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#rqnejfhcry .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#rqnejfhcry .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#rqnejfhcry .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rqnejfhcry .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#rqnejfhcry .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#rqnejfhcry .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rqnejfhcry .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rqnejfhcry .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#rqnejfhcry .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rqnejfhcry .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#rqnejfhcry .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rqnejfhcry .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rqnejfhcry .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rqnejfhcry .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rqnejfhcry .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rqnejfhcry .gt_left {
+  text-align: left;
+}
+
+#rqnejfhcry .gt_center {
+  text-align: center;
+}
+
+#rqnejfhcry .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#rqnejfhcry .gt_font_normal {
+  font-weight: normal;
+}
+
+#rqnejfhcry .gt_font_bold {
+  font-weight: bold;
+}
+
+#rqnejfhcry .gt_font_italic {
+  font-style: italic;
+}
+
+#rqnejfhcry .gt_super {
+  font-size: 65%;
+}
+
+#rqnejfhcry .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#rqnejfhcry .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#rqnejfhcry .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#rqnejfhcry .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#rqnejfhcry .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#rqnejfhcry .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#rqnejfhcry .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#rqnejfhcry .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#rqnejfhcry div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Model-Term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Model Term</th>
+<th id="value" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">value</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model Term">(Intercept)</td>
+<td class="gt_row gt_right" headers="value">−1.04</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Model Term">h(834 - annual precipitation) x h(annual maximum temperature - 10.3)</td>
+<td class="gt_row gt_right" headers="value">0.0000138</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model Term">h(43 - roughness)</td>
+<td class="gt_row gt_right" headers="value">0.0173</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Model Term">h(annual precipitation - 650) x h(8.65 - annual maximum temperature)</td>
+<td class="gt_row gt_right" headers="value">0.000135</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model Term">h(annual mean temperature - 7.31) x h(longitude - - 118.905)</td>
+<td class="gt_row gt_right" headers="value">0.0876</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Model Term">h(650 - annual precipitation)</td>
+<td class="gt_row gt_right" headers="value">0.00478</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model Term">h(1920 - annual precipitation) x h(annual mean temperature - 7.31)</td>
+<td class="gt_row gt_right" headers="value">0.000180</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Model Term">h(650 - annual precipitation) x h(annual mean temperature - 7.95)</td>
+<td class="gt_row gt_right" headers="value">−0.00122</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model Term">h(650 - annual precipitation) x county: ferry</td>
+<td class="gt_row gt_right" headers="value">−0.00431</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Model Term">h(650 - annual precipitation) x county: stevens</td>
+<td class="gt_row gt_right" headers="value">−0.00409</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model Term">h(1348 - maximum vapor) x county: whitman</td>
+<td class="gt_row gt_right" headers="value">0.00978</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Model Term">h(141 - elevation) x h(annual maximum temperature - 10.3)</td>
+<td class="gt_row gt_right" headers="value">0.000645</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model Term">h(650 - annual precipitation) x h(7.95 - annual mean temperature)</td>
+<td class="gt_row gt_right" headers="value">−0.000898</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Model Term">h(annual mean temperature - 7.31) x h( - 118.905 - longitude)</td>
+<td class="gt_row gt_right" headers="value">−0.0332</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model Term">h(year - 2020) x h(43 - roughness)</td>
+<td class="gt_row gt_right" headers="value">−0.0158</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Model Term">h(0.3 - dew temperature) x h(annual mean temperature - 7.31)</td>
+<td class="gt_row gt_right" headers="value">−0.708</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model Term">h(43 - roughness) x h(1018 - annual precipitation)</td>
+<td class="gt_row gt_right" headers="value">−0.0000238</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Model Term">h(43 - roughness) x h(annual precipitation - 1018)</td>
+<td class="gt_row gt_right" headers="value">−0.00000822</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model Term">h(roughness - 43)</td>
+<td class="gt_row gt_right" headers="value">0.00164</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Model Term">h(annual mean temperature - 7.31)</td>
+<td class="gt_row gt_right" headers="value">0.151</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model Term">h(10.3 - annual maximum temperature)</td>
+<td class="gt_row gt_right" headers="value">0.0876</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Model Term">h(roughness - 7) x h(annual mean temperature - 7.31)</td>
+<td class="gt_row gt_right" headers="value">−0.000739</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model Term">h(annual precipitation - 650)</td>
+<td class="gt_row gt_right" headers="value">0.0000552</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Model Term">h(elevation - 141) x h(annual maximum temperature - 10.3)</td>
+<td class="gt_row gt_right" headers="value">0.0000548</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model Term">h(7 - roughness) x h(annual mean temperature - 7.31)</td>
+<td class="gt_row gt_right" headers="value">0.00595</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-fda-coefs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;17.1: Model terms contained used the final FDA-MARS fit from the training set. There were 25 total coefficients, 6 of which used a single predictor, and 18 were interaction terms. The categorical predictor (county) was used in 3 terms.
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:10%;">
+
+</div>
+</div>
+<p>To better understand what is driving the model, MARS has an <em>internal</em> variable importance metric. The method estimates variable importance based on the improvement in model fit as terms are added. During the forward pass, MARS quantifies the reduction in GCV associated with each new basis function and attributes this improvement to the corresponding predictor(s). These GCV reductions are summed across all terms involving each predictor and scaled to range from 0 to 100, where 0 indicates the predictor does not appear in the final model. For our model, <a href="#fig-forested-fda-imp" class="quarto-xref">Figure&nbsp;<span>17.7</span></a> displays the results. Annual precipitation and annual maximum temperature were the most influential predictors, each receiving an importance score of 100. Terrain roughness, annual mean temperature, and longitude also contributed substantially to the classifier. There were 6 predictors that were not used at all: annual minimum temperature, eastness, january minimum temperature, latitude, minimum vapor, and northness.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-forested-fda-imp" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Horizontal dot plot of MARS importance scores based on GCV reduction. Annual precipitation and annual maximum temperature are tied at the highest importance. Terrain roughness, annual mean temperature, and longitude also contribute substantially, while several predictors have zero importance and do not appear in the final model." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-forested-fda-imp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cls-nonlinear_files/figure-html/fig-forested-fda-imp-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Horizontal dot plot of MARS importance scores based on GCV reduction. Annual precipitation and annual maximum temperature are tied at the highest importance. Terrain roughness, annual mean temperature, and longitude also contribute substantially, while several predictors have zero importance and do not appear in the final model.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-forested-fda-imp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.7: MARS feature importance for the final forested model.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>FDA via MARS occupies a middle ground between fully interpretable models and black-box methods. While it may not achieve optimal predictive performance, it often approaches it while still being interpretable through visualization, particularly when the model is additive.</p>
+<p>For example, suppose we chose an additive model based on the tuning results in <a href="#fig-fda-tune" class="quarto-xref">Figure&nbsp;<span>17.6</span></a>. In an additive model, the functional form relating each predictor to the outcome is independent of the other predictors. Although the values of other predictors shift the range of predicted probabilities, the shape of each predictor’s effect remains constant. This property enables us to construct partial dependence plots showing how predicted class probabilities vary with each predictor while holding others fixed. <a href="#fig-fda-profiles" class="quarto-xref">Figure&nbsp;<span>17.8</span></a> illustrates such profiles from an additive fit, enabling an interpretation of the model’s behavior.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-fda-profiles" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Grid of partial dependence profile plots, one per numeric predictor retained by the additive FDA-MARS model. Each panel shows a piecewise-linear curve of predicted forestation probability versus predictor value. The profiles reveal distinct nonlinear shapes including monotone increasing, monotone decreasing, and non-monotone trends with abrupt slope changes at MARS knot locations." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fda-profiles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cls-nonlinear_files/figure-html/fig-fda-profiles-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%" alt="Grid of partial dependence profile plots, one per numeric predictor retained by the additive FDA-MARS model. Each panel shows a piecewise-linear curve of predicted forestation probability versus predictor value. The profiles reveal distinct nonlinear shapes including monotone increasing, monotone decreasing, and non-monotone trends with abrupt slope changes at MARS knot locations.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fda-profiles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.8: Profile plots showing how each predictor relates to the probability of forestation when an additive FDA-MARS is used. The y-axis has no numbers since the probabilities are relative.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>For example, we can say that:</p>
+<ul>
+<li>The probability of forestation has a notable jump after the year 2020.</li>
+<li>The probability increases sharply when annual precipitation exceeds approximately 500 mm and remains elevated thereafter (holding other predictors constant).</li>
+<li>The downward spike in the longitude corresponds to the unforested region east of Seattle.</li>
+</ul>
+<p>and so on. These patterns illustrate how individual predictors influence the classification boundary in an interpretable manner.</p>
+<p><a href="https://tidymodels.aml4td.org/chapters/cls-nonlinear.html#sec-fda"><i class="fa-brands fa-r-project fa-Large" aria-label="r-project"></i></a></p>
+</section>
+</section>
+<section id="sec-cls-knn" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="sec-cls-knn"><span class="header-section-number">17.2</span> K-Nearest Neighbors</h2>
+<p>K-nearest neighbors (KNN) is predicated on the idea that data points that are close to one another in the predictor space should have outcomes that are also similar. If we are predicting a new sample, we find the <em>K</em> training set points that are “closest” to the new data point and use their outcome values to estimate the prediction. There is essentially no training here; everything happens when the sample is being predicted. KNN falls into a class of techniques called instance-based learning since it stores the training set instances and directly uses these data during prediction.</p>
+<p>What does “similar” and/or “close” mean? The operational definition of “proximity” or “closeness” requires specifying either a distance or similarity metric. While Euclidean distance is a common metric, the Minkowski distance provides a more flexible framework. For a new observation <span class="math inline">\boldsymbol{u}</span> with <span class="math inline">p</span> predictors, the Minkowski distance is defined as:</p>
+<p><span class="math display">
+d(\boldsymbol{u}, \boldsymbol{x}) ={\biggl (}\sum _{j=1}^{p}|u_j-x_{j}|^{degree}{\biggr )}^{\frac {1}{degree}},
+</span></p>
+<p>where <span class="math inline">degree</span> is the distance parameter. This formulation yields Euclidean distance when <span class="math inline">degree = 2</span>, Manhattan distance (also called taxicab or city-block distance) when <span class="math inline">degree = 1</span>, and intermediate distance metrics for other values of <span class="math inline">degree</span>.</p>
+<p>The choice of distance metric can substantially influence model performance and can be considered a tuning parameter in practice (via the Minkowski degree).</p>
+<p>Beyond the Minkowski family, several specialized distance metrics may be appropriate depending on the structure and nature of the predictor space:</p>
+<ul>
+<li><p>Geodesic distance (discussed in <a href="embeddings.html#sec-isomap" class="quarto-xref"><span>Section 7.3.1</span></a>) is based on a general distance matrix to construct a graph-based representation of inter-point relationships.</p></li>
+<li><p>Haversine distance (introduced in <a href="embeddings.html#sec-centroids" class="quarto-xref"><span>Section 7.4</span></a>) accounts for the curvature of the Earth’s surface and is the appropriate metric when predictors represent geographic coordinates (latitude and longitude).</p></li>
+<li><p>Mahalanobis distance <span class="citation" data-cites="JohnsonWichern DeMaesschalck20001">(<a href="#ref-DeMaesschalck20001" role="doc-biblioref">De Maesschalck, Jouan-Rimbaud, and Massart 2000</a>; <a href="#ref-JohnsonWichern" role="doc-biblioref">Johnson and Wichern 2007</a>)</span> incorporates the covariance structure among predictors, effectively scaling predictor differences by their variances and correlations. This metric is particularly valuable when predictors exhibit substantial correlation and sufficient data are available to reliably estimate the covariance matrix. The Mahalanobis distance has a direct connection to the mathematics of discriminant analysis.</p></li>
+</ul>
+<p>These distance-based metrics require numeric predictors. For the Minkowski distance, predictors must be expressed in the same units to prevent variables with larger scales from dominating the distance calculation. This is typically accomplished through centering and scaling (standardization) or other normalization techniques. Additionally, addressing skewness through appropriate transformations (e.g., Box-Cox, Yeo-Johnson, orderNorm, etc.) prior to distance calculation is recommended, as highly skewed distributions can distort relationships and degrade model performance.</p>
+<p>For qualitative predictors, one approach is to encode them as indicator (dummy) variables, which should then be preprocessed in the same way as continuous predictors. However, when the predictor set contains a mixture of data types, Gower distance <span class="citation" data-cites="gower">(<a href="#ref-gower" role="doc-biblioref">Gower 1971</a>)</span> provides a unified framework that accommodates different variable types without requiring uniform encoding. Gower distance computes a dissimilarity measure separately for each predictor according to its data type, then aggregates these component distances:</p>
+<p><span class="math display">
+d(\boldsymbol{u}, \boldsymbol{x}) =\frac {1}{p}\sum _{j=1}^{p}d_j(u_j, x_{j}),
+</span></p>
+<p>where <span class="math inline">d_j</span> denotes the distance function for predictor <span class="math inline">j</span>. For continuous predictors, the component distance is range-normalized:</p>
+<p><span class="math display">
+d_j(u_j, x_{j})={\frac {|u_{j}-x_{j}|}{R_{j}}}
+</span></p>
+<p>where <span class="math inline">R_j</span> represents the range of predictor <span class="math inline">j</span> in the training set. This normalization ensures all continuous predictors contribute equally regardless of their original scales.</p>
+<p>For categorical predictors, the component distance is a simple mismatch indicator, <span class="math inline">d_j(u_j, x_{j}) = I(u_j \ne x_j)</span>. This binary metric assigns zero distance for matching categories and unit distance otherwise.</p>
+<p>For a comprehensive treatment of distance metrics in the context of nearest neighbor methods, see <span class="citation" data-cites="cunningham2021k">Cunningham and Delany (<a href="#ref-cunningham2021k" role="doc-biblioref">2021</a>)</span>.</p>
+<p>For classification problems, KNN identifies the <em>K</em> nearest neighbors and estimates class probabilities as the proportion of neighbors belonging to each class:</p>
+<p><span class="math display">
+\widehat{\pi}_{c} = \frac{1}{K}\sum_{k=1}^K y_{kc}
+</span></p>
+<p>where <span class="math inline">y_{kc}</span> is a binary indicator equal to 1 if neighbor <span class="math inline">k</span> belongs to class <span class="math inline">c</span>, and 0 otherwise. For small values of K, these empirical probability estimates can be unreliable, particularly when certain classes are underrepresented among the neighbors. The Laplace correction (previously discussed in <a href="#sec-naive-bayes" class="quarto-xref"><span>Section 17.1.1</span></a>) can be used to regularize the estimate:</p>
+<p><span class="math display">
+\widehat{\pi}_{c} = \frac{1}{K}\sum_{k=1}^K \frac{y_{kc} +\alpha}{K + \alpha C}
+</span></p>
+<p>where <span class="math inline">C</span> denotes the number of classes and <span class="math inline">\alpha \in [0, 2]</span> is a smoothing parameter. Setting <span class="math inline">\alpha = 0</span> yields the unregularized estimate, while <span class="math inline">\alpha &gt; 0</span> shrinks extreme probabilities toward a uniform distribution.</p>
+<p>It is common to fix <em>K</em> and collect all neighbors, regardless of their distances to the query point. Alternatively, one can put a cap on the maximum distance or use a more informative approach of using weighted distances:</p>
+<p><span class="math display">
+\widehat{p}_{c} = \frac{1}{W}\sum_{k=1}^K g(d_k)\;y_{kc}
+</span></p>
+<p>where <span class="math inline">g()</span> is a kernel function that weights the distances and <span class="math inline">W</span> is the sum of the <span class="math inline">g(d_k)</span> <span class="citation" data-cites="dudani1976distance zuo2008kernel Samworth">(<a href="#ref-dudani1976distance" role="doc-biblioref">Dudani 1976</a>; <a href="#ref-zuo2008kernel" role="doc-biblioref">Zuo, Zhang, and Wang 2008</a>; <a href="#ref-Samworth" role="doc-biblioref">Samworth 2012</a>)</span>. <a href="#fig-weight-kernels" class="quarto-xref">Figure&nbsp;<span>17.9</span></a> shows some commonly used functions <span class="citation" data-cites="hechenbichler2004weighted">(<a href="#ref-hechenbichler2004weighted" role="doc-biblioref">Hechenbichler and Schliep 2004</a>)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-weight-kernels" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Faceted line plot showing five kernel weighting functions (Rectangular, Triangular, Cosine, Gaussian, and Inverse) plotted over distance from zero to one. The Rectangular kernel is flat, the Triangular kernel decreases linearly, the Cosine kernel follows a smooth cosine curve, the Gaussian kernel decreases in a bell shape, and the Inverse kernel drops steeply near zero then flattens. All are rescaled to the same maximum." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-weight-kernels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cls-nonlinear_files/figure-html/fig-weight-kernels-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Faceted line plot showing five kernel weighting functions (Rectangular, Triangular, Cosine, Gaussian, and Inverse) plotted over distance from zero to one. The Rectangular kernel is flat, the Triangular kernel decreases linearly, the Cosine kernel follows a smooth cosine curve, the Gaussian kernel decreases in a bell shape, and the Inverse kernel drops steeply near zero then flattens. All are rescaled to the same maximum.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-weight-kernels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.9: Different kernel functions to downweight far-away neighbors. Values have been rescaled to have the same upper value.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Outside of preprocessing methods, the primary tuning parameters are the number of neighbors, the weighting function, and the distance degree (if using a Minkowski distance). Recall from <a href="feature-selection.html#fig-irrelevant-predictors" class="quarto-xref">Figure&nbsp;<span>13.1</span></a> that KNN models can be harmed when used with irrelevant predictors. As will be seen with these data, tuning an initial feature selection filter can improve model quality.</p>
+<p>How well does this technique work for the forestation data? To start, we used preprocessing that included the same random forest importance filter as <a href="#sec-naive-bayes" class="quarto-xref"><span>Section 17.1.1</span></a> (and tuned the proportion of predictors retained). After that, an effect encoding was used for the county column, and then an orderNorm transformation was applied to all predictors to standardize them to the same units and potentially remove skewness. The model was tuned over the proportion of features retained (5% to 100%), the number of neighbors (two through fifty), the Minkowski degree parameter (between 0.1 and 2.0), and the kernel functions listed in <a href="#fig-weight-kernels" class="quarto-xref">Figure&nbsp;<span>17.9</span></a>. A total of fifty configurations were evaluated using resampling, and the Brier scores are shown in <a href="#fig-knn-cls-tune" class="quarto-xref">Figure&nbsp;<span>17.10</span></a>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-knn-cls-tune" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Multi-panel tuning plot for K-nearest neighbors classification on forestation data. Panels show Brier score versus the number of neighbors, Minkowski distance parameter, proportion of predictors retained, and kernel function. Poor results occur with fewer than twenty neighbors. The distance parameter favors small values around 0.5. No single kernel function dominates." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-knn-cls-tune-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cls-nonlinear_files/figure-html/fig-knn-cls-tune-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Multi-panel tuning plot for K-nearest neighbors classification on forestation data. Panels show Brier score versus the number of neighbors, Minkowski distance parameter, proportion of predictors retained, and kernel function. Poor results occur with fewer than twenty neighbors. The distance parameter favors small values around 0.5. No single kernel function dominates.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-knn-cls-tune-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.10: K-nearest neighbors tuning results for the forestation data.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Poor results occurred when there were fewer than twenty neighbors, and subsequently, the Brier scores remained consistently low. The distance parameter appeared to favor small values (around 0.5). There are no strong trends in terms of which kernel functions work best; Gaussian kernels appear to do well overall, but there are configurations that do well using any kernel. Numerically, the best results retained 86.4% of the predictors, used 28 neighbors, a Minkowski degree of 1.65, and a cos kernel function. In the figure above, we can see that there is a small increase in error when the entire predictor set is used. Otherwise, smaller feature sets are underfitting the data. The corresponding Brier score was 0.0778, which is the smallest Brier score seen so far. The area under the ROC curve was also good, with a resampling estimate of 0.953.</p>
+<p><a href="https://tidymodels.aml4td.org/chapters/cls-nonlinear.html#sec-cls-knn"><i class="fa-brands fa-r-project fa-Large" aria-label="r-project"></i></a></p>
+</section>
+<section id="sidebar-dot-products" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="sidebar-dot-products"><span class="header-section-number">17.3</span> Sidebar: Dot Products</h2>
+<p>Dot products will become important in several subsequent sections of this chapter. While distance metrics (such as those used in KNN) provide one framework for comparing vectors, dot products offer another perspective that captures different geometric properties. Understanding their relationship requires some basic linear algebra and geometry.</p>
+<p>Vectors are characterized by two fundamental properties:</p>
+<ul>
+<li><p>Magnitude (or length) is denoted <span class="math inline">||\boldsymbol{a}||</span> for a vector <span class="math inline">\boldsymbol{a}</span> with <span class="math inline">p</span> elements. The standard measure is the Euclidean norm, computed as the square root of the sum of squared elements: <span class="math inline">||\boldsymbol{a}|| = \sqrt{\sum_{i=1}^p a_i^2}</span>.</p></li>
+<li><p>Direction is defined relative to another reference (say another vector <span class="math inline">\boldsymbol{y}</span> with the same dimension (<span class="math inline">p</span>)), typically quantified by the angle <span class="math inline">\vartheta</span> between two vectors of equal dimension.</p></li>
+</ul>
+<p>Distance-based methods like KNN depend solely on the magnitude of the difference between vectors and do not consider the angle between them.</p>
+<p>The dot product (or inner product) of two <span class="math inline">p</span>-dimensional vectors is defined as:</p>
+<p><span id="eq-dot-prod-sum"><span class="math display">
+\boldsymbol{a}'\boldsymbol{b} = \sum_{i=1}^p a_ib_i
+\tag{17.6}</span></span></p>
+<p>Note that the dot product does not satisfy the properties of a distance metric since the dot product of a vector with itself could never be zero unless all of its elements are zero.</p>
+<p>Dot products measure both the magnitude of each vector as well as the angle between them. We can rewrite <a href="#eq-dot-prod-sum" class="quarto-xref">Equation&nbsp;<span>17.6</span></a> as</p>
+<p><span id="eq-dot-prod-vec"><span class="math display">
+\boldsymbol{a}'\boldsymbol{b} = ||\boldsymbol{a}||\,||\boldsymbol{b}|| \cos{\vartheta}
+\tag{17.7}</span></span></p>
+<p>This formulation reveals that: The dot product is maximized when vectors are parallel (<span class="math inline">\vartheta = 0^{\circ}</span>, <span class="math inline">\cos\vartheta = 1</span>), it equals zero when vectors are orthogonal (<span class="math inline">\vartheta = 90^{\circ}</span>, <span class="math inline">\cos\vartheta = 0</span>), and it is negative when vectors point in generally opposite directions (<span class="math inline">\vartheta &gt; 90^{\circ}</span>). This dual sensitivity to both magnitude and direction distinguishes dot products from distance-based comparisons and makes them particularly useful in certain modeling contexts.</p>
+<p>To illustrate, <a href="#fig-dot-products" class="quarto-xref">Figure&nbsp;<span>17.11</span></a> shows the dot products of a vector <span class="math inline">\boldsymbol{x} = (2.0, 0.5)</span> to a grid of vectors with elements ranging between <span class="math inline">\pm 3</span>. We can see a diagonal region of light colored values that have dot products close to or at zero. This represents vectors that are orthogonal to <span class="math inline">\boldsymbol{x}</span>. There is also a dotted line extending to the origin (0.0, 0.0) that coincides with this line.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-dot-products" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Heatmap of dot product values on a two-dimensional grid relative to a reference point at (2.0, 0.5). A dotted line extends from the origin to the reference point. A dashed diagonal line marks vectors with the same dot product as the reference vector with itself. Values increase toward the upper right and decrease toward the lower left, with a band of near-zero values perpendicular to the reference direction." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dot-products-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cls-nonlinear_files/figure-html/fig-dot-products-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="Heatmap of dot product values on a two-dimensional grid relative to a reference point at (2.0, 0.5). A dotted line extends from the origin to the reference point. A dashed diagonal line marks vectors with the same dot product as the reference vector with itself. Values increase toward the upper right and decrease toward the lower left, with a band of near-zero values perpendicular to the reference direction.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dot-products-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.11: Dot product values of a grid of vectors relative to <span class="math inline">\boldsymbol{x} = (2.0, 0.5)</span> (the black point). The dashed black line shows the contour of constant dot products and the white dotted line is points to the origin.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>What is the dot product of <span class="math inline">\boldsymbol{x}</span> with itself? That value is <span class="math inline">\boldsymbol{x}'\boldsymbol{x} =</span> 4.25. The dashed black diagonal line shows the vectors whose dot product is 4.25. These are points that point in the same direction (i.e., <span class="math inline">\vartheta = 0^{\circ}</span>) and magnitude as our example vector. Note that this line is parallel to the region of zero values, reemphasizing that the zero region is orthogonal to vectors like <span class="math inline">\boldsymbol{x}</span>.</p>
+<p>The vector associated with the largest dot product would move in the same direction as <span class="math inline">\boldsymbol{x}</span>. Since <span class="math inline">||\boldsymbol{x}||</span> is fixed and <span class="math inline">\vartheta = 0^{\circ}</span>, the magnitude of the vector would be as large as possible. Conversely, the vector with the smallest dot product will move in the opposite direction and as far as possible. For our <span class="math inline">\boldsymbol{x}</span>, the dot product is maximized in the upper right corner of <a href="#fig-dot-products" class="quarto-xref">Figure&nbsp;<span>17.11</span></a> and minimized in the lower left corner.</p>
+<p>We’ll see the dot product again in <span class="quarto-unresolved-ref">?sec-attention</span> where it is intended to measure the similarity of two embedding vectors within a neural network, and again in <span class="quarto-unresolved-ref">?sec-cls-svm</span> where it is the computational backbone of support vector machines.</p>
+</section>
+<section id="sec-cls-svm-nlin" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="sec-cls-svm-nlin"><span class="header-section-number">17.4</span> Nonlinear Support Vector Machines</h2>
+<p><a href="https://tidymodels.aml4td.org/chapters/cls-nonlinear.html#sec-cls-svm-nlin"><i class="fa-brands fa-r-project fa-Large" aria-label="r-project"></i></a></p>
+</section>
+<section id="sec-cls-nonlinear-compare" class="level2" data-number="17.5">
+<h2 data-number="17.5" class="anchored" data-anchor-id="sec-cls-nonlinear-compare"><span class="header-section-number">17.5</span> Comparisons to Previous Models</h2>
+<p>Is there a specific model, so far, that appears to work best for the forested data? To determine that, we conduct a Bayesian comparison of the models using their resampling statistics (from <a href="comparing-models.html#sec-compare-resample-bayes" class="quarto-xref"><span>Section 14.1.3</span></a>). We’ll focus on the best candidate from each distinct modeling method.</p>
+<p>A Bayesian model was created using Gaussian priors to estimate the posterior distribution of the Brier statistic for each model and to contrast the current best model with others. A ROPE approach is taken here, in which we specify that a difference of ±0.01 in the Brier scores between models would be considered a realistic change.</p>
+<p>While the KNN model currently has the smallest Brier score, there is a cluster of models that have roughly the same Brier scores. This includes the logistic models from the previous chapter. Clearly, the naive Bayes model is not in the running for best model, not even through the lens of practical equivalence.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-cls-nonlinear-compare" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two-panel figure comparing forestation models. The left panel is a dot-and-whisker plot of Brier scores with 90% credible intervals for each model, ordered from best to worst. A cluster of models including logistic regression and MLP have similar low Brier scores, while naive Bayes performs notably worse. The right panel shows horizontal bars for the probability of practical equivalence to the best model." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cls-nonlinear-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cls-nonlinear_files/figure-html/fig-cls-nonlinear-compare-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Two-panel figure comparing forestation models. The left panel is a dot-and-whisker plot of Brier scores with 90% credible intervals for each model, ordered from best to worst. A cluster of models including logistic regression and MLP have similar low Brier scores, while naive Bayes performs notably worse. The right panel shows horizontal bars for the probability of practical equivalence to the best model.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cls-nonlinear-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.12: Comparisons of current forestation models. The intervals are 90% credible intervals. The bars on the right show the probability of practical equivalence to the current best model, assuming that a difference in Brier scores of +/- 0.01 is practical.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="chapter-references" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="chapter-references">Chapter References</h2>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-breiman1984nonlinear" class="csl-entry" role="listitem">
+Breiman, L, and R Ihaka. 1984. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Nonlinear+discriminant+analysis+via+scaling+and+ACE+&amp;as_ylo=1984&amp;as_yhi=1984&amp;btnG=">Nonlinear Discriminant Analysis via Scaling and <span>ACE</span></a>.”</span> University of. California, Berkeley.
+</div>
+<div id="ref-chen2017tutorial" class="csl-entry" role="listitem">
+Chen, YC. 2017. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=A+tutorial+on+kernel+density+estimation+and+recent+advances&amp;as_ylo=2017&amp;as_yhi=2017&amp;btnG=">A Tutorial on Kernel Density Estimation and Recent Advances</a>.”</span> <em>Biostatistics &amp; Epidemiology</em> 1 (1): 161–87.
+</div>
+<div id="ref-cunningham2021k" class="csl-entry" role="listitem">
+Cunningham, P, and SJ Delany. 2021. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=K+nearest+neighbour+classifiers+a+tutorial&amp;as_ylo=2021&amp;as_yhi=2021&amp;btnG=">K-Nearest Neighbour Classifiers-a Tutorial</a>.”</span> <em>ACM Computing Surveys (CSUR)</em> 54 (6): 1–25.
+</div>
+<div id="ref-DeMaesschalck20001" class="csl-entry" role="listitem">
+De Maesschalck, R, D Jouan-Rimbaud, and D Massart. 2000. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=The+Mahalanobis+distance&amp;as_ylo=2000&amp;as_yhi=2000&amp;btnG=">The Mahalanobis Distance</a>.”</span> <em>Chemometrics and Intelligent Laboratory Systems</em> 50 (1): 1–18.
+</div>
+<div id="ref-dudani1976distance" class="csl-entry" role="listitem">
+Dudani, S. 1976. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=The+distance+weighted+k+nearest+neighbor+rule&amp;as_ylo=1976&amp;as_yhi=1976&amp;btnG=">The Distance-Weighted k-Nearest-Neighbor Rule</a>.”</span> <em>IEEE Transactions on Systems, Man, and Cybernetics</em>, no. 4: 325–27.
+</div>
+<div id="ref-friedman1989regularized" class="csl-entry" role="listitem">
+Friedman, J. 1989. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Regularized+discriminant+analysis&amp;as_ylo=1989&amp;as_yhi=1989&amp;btnG=">Regularized Discriminant Analysis</a>.”</span> <em>Journal of the American Statistical Association</em> 84 (405): 165–75.
+</div>
+<div id="ref-ghojogh2019linear" class="csl-entry" role="listitem">
+Ghojogh, B, and M Crowley. 2019. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Linear+and+quadratic+discriminant+analysis+Tutorial&amp;as_ylo=2019&amp;as_yhi=2019&amp;btnG=">Linear and Quadratic Discriminant Analysis: Tutorial</a>.”</span> <em>arXiv</em>.
+</div>
+<div id="ref-golub1979generalized" class="csl-entry" role="listitem">
+Golub, G, M Heath, and G Wahba. 1979. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Generalized+cross+validation+as+a+method+for+choosing+a+good+ridge+parameter&amp;as_ylo=1979&amp;as_yhi=1979&amp;btnG=">Generalized Cross-Validation as a Method for Choosing a Good Ridge Parameter</a>.”</span> <em>Technometrics</em> 21 (2): 215–23.
+</div>
+<div id="ref-gower" class="csl-entry" role="listitem">
+Gower, J. 1971. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=A+general+coefficient+of+similarity+and+some+of+its+properties&amp;as_ylo=1971&amp;as_yhi=1971&amp;btnG=">A General Coefficient of Similarity and Some of Its Properties</a>.”</span> <em>Biometrics</em> 27 (4): 857–71.
+</div>
+<div id="ref-hand1981discrimination" class="csl-entry" role="listitem">
+Hand, D. 1981. <em>Discrimination and Classification</em>. Wiley.
+</div>
+<div id="ref-hand2001idiot" class="csl-entry" role="listitem">
+Hand, D, and K Yu. 2001. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Idiot+s+Bayes+not+so+stupid+after+all+&amp;as_ylo=2001&amp;as_yhi=2001&amp;btnG=">Idiot’s <span>Bayes</span> — Not so Stupid After All?</a>”</span> <em>International Statistical Review</em> 69 (3): 385–98.
+</div>
+<div id="ref-hastie1994flexible" class="csl-entry" role="listitem">
+Hastie, T, R Tibshirani, and A Buja. 1994. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Flexible+discriminant+analysis+by+optimal+scoring&amp;as_ylo=1994&amp;as_yhi=1994&amp;btnG=">Flexible Discriminant Analysis by Optimal Scoring</a>.”</span> <em>Journal of the American Statistical Association</em> 89 (428): 1255–70.
+</div>
+<div id="ref-mda_2024" class="csl-entry" role="listitem">
+Hastie, T, and T Tibshirani. 2024. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=+mda+Mixture+and+Flexible+Discriminant+Analysis&amp;as_ylo=2024&amp;as_yhi=2024&amp;btnG="><span class="nocase">mda</span>: Mixture and Flexible Discriminant Analysis</a>.”</span> <a href="https://doi.org/10.32614/CRAN.package.mda">https://doi.org/10.32614/CRAN.package.mda</a>.
+</div>
+<div id="ref-hechenbichler2004weighted" class="csl-entry" role="listitem">
+Hechenbichler, K, and K Schliep. 2004. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Weighted+k+Nearest+Neighbor+Techniques+and+Ordinal+Classification&amp;as_ylo=2004&amp;as_yhi=2004&amp;btnG=">Weighted k-Nearest-Neighbor Techniques and Ordinal Classification</a>.”</span> Sfb386. <a href="http://nbn-resolving.de/urn/resolver.pl?urn=nbn:de:bvb:19-epub-1769-9">http://nbn-resolving.de/urn/resolver.pl?urn=nbn:de:bvb:19-epub-1769-9</a>.
+</div>
+<div id="ref-hubert2024robust" class="csl-entry" role="listitem">
+Hubert, M, J Raymaekers, and P Rousseeuw. 2024. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Robust+discriminant+analysis&amp;as_ylo=2024&amp;as_yhi=2024&amp;btnG=">Robust Discriminant Analysis</a>.”</span> <em>Wiley Interdisciplinary Reviews: Computational Statistics</em> 16 (5): e70003.
+</div>
+<div id="ref-JohnsonWichern" class="csl-entry" role="listitem">
+Johnson, R, and D Wichern. 2007. <em>Applied Multivariate Statistical Analysis</em>. 6th ed. Upper Saddle River, <span>NJ</span>: Prentice Hall.
+</div>
+<div id="ref-Manning2009" class="csl-entry" role="listitem">
+Manning, D, P Raghavan, and H Schutze. 2009. <em><a href="https://nlp.stanford.edu/IR-book/information-retrieval-book.html">Introduction to Information Retrieval</a></em>. Cambridge University Press.
+</div>
+<div id="ref-mclachlan2005discriminant" class="csl-entry" role="listitem">
+McLachlan, G. 2005. <em>Discriminant Analysis and Statistical Pattern Recognition</em>. John Wiley &amp; Sons.
+</div>
+<div id="ref-murphy2012machine" class="csl-entry" role="listitem">
+Murphy, K. 2012. <em><a href="https://probml.github.io/pml-book/book0.html">Machine Learning: A Probabilistic Perspective</a></em>. MIT press.
+</div>
+<div id="ref-pang2009shrinkage" class="csl-entry" role="listitem">
+Pang, H, T Tong, and H Zhao. 2009. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Shrinkage+based+diagonal+discriminant+analysis+and+its+applications+in+high+dimensional+data&amp;as_ylo=2009&amp;as_yhi=2009&amp;btnG=">Shrinkage-Based Diagonal Discriminant Analysis and Its Applications in High-Dimensional Data</a>.”</span> <em>Biometrics</em> 65 (4): 1021–29.
+</div>
+<div id="ref-park1990comparison" class="csl-entry" role="listitem">
+Park, B, and J Marron. 1990. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Comparison+of+data+driven+bandwidth+selectors&amp;as_ylo=1990&amp;as_yhi=1990&amp;btnG=">Comparison of Data-Driven Bandwidth Selectors</a>.”</span> <em>Journal of the American Statistical Association</em> 85 (409): 66–72.
+</div>
+<div id="ref-Samworth" class="csl-entry" role="listitem">
+Samworth, R. 2012. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=+Optimal+weighted+nearest+neighbour+classifiers+&amp;as_ylo=2012&amp;as_yhi=2012&amp;btnG=">Optimal Weighted Nearest Neighbour Classifiers</a>.”</span> <em>The Annals of Statistics</em> 40 (5): 2733–63.
+</div>
+<div id="ref-Silverman86" class="csl-entry" role="listitem">
+Silverman, B. 1986. <em>Density Estimation for Statistics and Data Analysis</em>. Chapman &amp; Hall.
+</div>
+<div id="ref-zuo2008kernel" class="csl-entry" role="listitem">
+Zuo, W, D Zhang, and K Wang. 2008. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=On+kernel+difference+weighted+k+nearest+neighbor+classification&amp;as_ylo=2008&amp;as_yhi=2008&amp;btnG=">On Kernel Difference-Weighted k-Nearest Neighbor Classification</a>.”</span> <em>Pattern Analysis and Applications</em> 11 (3): 247–57.
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>We’ll see kernel functions two more times in this chapter.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>In units of Pa × 100.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>A different view of predictor importance will be seen later in <a href="#fig-forested-fda-imp" class="quarto-xref">Figure&nbsp;<span>17.7</span></a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>The approximation involves scaling factors derived from the eigenvalues of <span class="math inline">\boldsymbol{\Phi}</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/dev\.aml4td\.org\/svm-review\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/cls-linear.html" class="pagination-link" aria-label="Generalized Linear and Additive Classifiers">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Generalized Linear and Additive Classifiers</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/cls-neural-nets.html" class="pagination-link" aria-label="Neural Network Classifiers">
+        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Neural Network Classifiers</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+(function(d) {
+  d.querySelectorAll(".pseudocode-container").forEach(function(el) {
+    let pseudocodeOptions = {
+      indentSize: el.dataset.indentSize || "1.2em",
+      commentDelimiter: el.dataset.commentDelimiter || "//",
+      lineNumber: el.dataset.lineNumber === "true" ? true : false,
+      lineNumberPunc: el.dataset.lineNumberPunc || ":",
+      noEnd: el.dataset.noEnd === "true" ? true : false,
+      titlePrefix: el.dataset.algTitle || "Algorithm"
+    };
+    pseudocode.renderElement(el.querySelector(".pseudocode"), pseudocodeOptions);
+  });
+})(document);
+(function(d) {
+  d.querySelectorAll(".pseudocode-container").forEach(function(el) {
+    titleSpan = el.querySelector(".ps-root > .ps-algorithm > .ps-line > .ps-keyword")
+    titlePrefix = el.dataset.algTitle;
+    titleIndex = el.dataset.chapterLevel ? el.dataset.chapterLevel + "." + el.dataset.pseudocodeIndex : el.dataset.pseudocodeIndex;
+    titleSpan.innerHTML = titlePrefix + " " + titleIndex + " ";
+  });
+})(document);
+</script>
+
+
+
+
+</body></html>
