@@ -472,9 +472,8 @@ window.Quarto = {
   <li><a href="#sec-logistic-penalized" id="toc-sec-logistic-penalized" class="nav-link" data-scroll-target="#sec-logistic-penalized"><span class="header-section-number">16.2.4</span> Regularization Through Penalization</a></li>
   <li><a href="#sec-logistic-bayes" id="toc-sec-logistic-bayes" class="nav-link" data-scroll-target="#sec-logistic-bayes"><span class="header-section-number">16.2.5</span> Bayesian Estimation</a></li>
   </ul></li>
-  <li><a href="#sec-cls-gam" id="toc-sec-cls-gam" class="nav-link" data-scroll-target="#sec-cls-gam"><span class="header-section-number">16.3</span> Generalized Additive Models</a></li>
-  <li><a href="#sec-cls-svm-lin" id="toc-sec-cls-svm-lin" class="nav-link" data-scroll-target="#sec-cls-svm-lin"><span class="header-section-number">16.4</span> Linear Support Vector Machines</a></li>
-  <li><a href="#sec-multinomial-reg" id="toc-sec-multinomial-reg" class="nav-link" data-scroll-target="#sec-multinomial-reg"><span class="header-section-number">16.5</span> Multinomial Regression</a></li>
+  <li><a href="#sec-multinomial-reg" id="toc-sec-multinomial-reg" class="nav-link" data-scroll-target="#sec-multinomial-reg"><span class="header-section-number">16.3</span> Multinomial Regression</a></li>
+  <li><a href="#sec-cls-gam" id="toc-sec-cls-gam" class="nav-link" data-scroll-target="#sec-cls-gam"><span class="header-section-number">16.4</span> Generalized Additive Models</a></li>
   <li><a href="#chapter-references" id="toc-chapter-references" class="nav-link" data-scroll-target="#chapter-references">Chapter References</a></li>
   </ul>
 </nav>
@@ -483,7 +482,7 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 <div class="dev-preview-banner">
   <strong>Draft preview</strong>
-  <span>branch <code>svm-cls-linear</code> at <code>d292056</code></span>
+  <span>branch <code>deploy-scripts</code> at <code>2c34b03</code></span>
   <span>Not the published book —
     <a href="https://aml4td.org">read aml4td.org</a></span>
   <span><a href="https://dev.aml4td.org/">all previews</a></span>
@@ -3577,71 +3576,13 @@ Pr[\beta|\alpha] = (1 - \alpha) N(0, 10) + \alpha N(0, 0.1)
 <p><a href="https://tidymodels.aml4td.org/chapters/cls-linear.html#sec-logistic-bayes"><i class="fa-brands fa-r-project fa-Large" aria-label="r-project"></i></a></p>
 </section>
 </section>
-<section id="sec-cls-gam" class="level2" data-number="16.3">
-<h2 data-number="16.3" class="anchored" data-anchor-id="sec-cls-gam"><span class="header-section-number">16.3</span> Generalized Additive Models</h2>
-<p><a href="https://tidymodels.aml4td.org/chapters/cls-linear.html#sec-cls-gam"><i class="fa-brands fa-r-project fa-Large" aria-label="r-project"></i></a></p>
-</section>
-<section id="sec-cls-svm-lin" class="level2" data-number="16.4">
-<h2 data-number="16.4" class="anchored" data-anchor-id="sec-cls-svm-lin"><span class="header-section-number">16.4</span> Linear Support Vector Machines</h2>
-<p>Support vector machines (SVMs) have been a staple in machine learning for the last few decades. <span class="citation" data-cites="cristianini2000introduction">Cristianini and Shawe-Taylor (<a href="#ref-cristianini2000introduction" role="doc-biblioref">2000</a>)</span> is a good resource for beginners. We’ll first introduce them here and constrain ourselves to linear classifiers. This will help concentrate on the model’s loss function and a basic classifier. Later, in <a href="cls-nonlinear.html#sec-cls-svm-nlin" class="quarto-xref"><span>Section 17.4</span></a>, we’ll see the well-known version of the model that uses the “kernel trick” to enable nonlinear class boundaries.</p>
-<p>SVMs are driven by an objective function called <strong>hinge loss</strong>. For now, we’ll assume that there are two outcome class levels. We’ll also recode the target variable so that these two classes are represented as <span class="math inline">\tilde{y} \in \pm 1</span> (as opposed to the standard 0/1 encoding). SVMs are <em>not</em> designed to naturally generate class probability estimates. Instead, they generate a predictive score on the real line, with zero as the default threshold for differentiating between the two classes. We’ll denote the prediction function for the score as <span class="math inline">\eta</span>, recycling notation from <a href="#eq-logit" class="quarto-xref">Equation&nbsp;<span>16.6</span></a>. While SVMs do not automatically create logit values, the linear classifiers are parameterized with a linear predictor function <span class="math inline">\eta =\beta_0 + \boldsymbol{x}_{i}'\boldsymbol{\beta}</span>.</p>
-<p>Let’s briefly recall a different loss function for a binary classifier. The Brier score estimates the squared error between the probability estimate (<span class="math inline">\pi</span>) and the observed classes (0/1). Let’s focus on the first class, say the event of interest, being predicted. When the model is perfect, both the estimate and the observed values are zero. However, as the probability estimates decreases from 1.0 to 0.5, the loss increases quadratically. If we have a probability of 0.75, the Brier score does assign some loss to the data point. Its hard classification is still correct, but the probability estimate is not perfect, and the loss reflects this.</p>
-<p>Hinge loss treats any predicted score that is greater than 1.0 as perfect and assigns zero loss. If the hard class prediction is still correct but not perfect (i.e., <span class="math inline">0.0 \le \eta \le 1.0</span>), a loss is assigned that is increasingly linear as the values become closer to 0.0. This is also the loss for incorrect hard class predictions (<span class="math inline">\eta \lt 0.0</span>). Mathematically, the loss is <span class="math inline">max(0, 1 - \tilde{y}\eta)</span></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-svm-loss" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-svm-loss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="cls-linear_files/figure-html/fig-svm-loss-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-svm-loss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;16.15: Three loss functions shown against a score value on the real line, denoted as <span class="math inline">\eta</span>. For some models, this could be the logit value or a general linear predictor.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>SVM models are based on the objective function:</p>
-<p><span id="eq-svm-cls-loss"><span class="math display">
-L(\tilde{y}; \beta_0, \boldsymbol{\beta}) = \frac{\mathcal{C}}{n_{tr}}\sum_{i=1}^{n_{tr}}\Big( max\left[0, 1 - \tilde{y}_i \left(\beta_0 + \boldsymbol{x}_{i}'\boldsymbol{\beta}\right)\right]\Big) + ||\boldsymbol{\beta}||^2
-\tag{16.13}</span></span></p>
-<p>The summation on the left is the accumulation of hinge loss values. Again, note that well-predicted data points (<span class="math inline">\eta \ge 0</span>) contribute nothing to this statistic. The constant <span class="math inline">\mathcal{C}</span> is the <em>cost value</em>. This is a tuning parameter that modulates how much effort the model should exert to predict all training set values as well as possible. Tuning this value enables us to modulate model complexity. For linear SVM classifiers, the cost function has a negligible impact on performance. However, we’ll see in <a href="cls-nonlinear.html#sec-cls-svm-nlin" class="quarto-xref"><span>Section 17.4</span></a> that this parameter has a profound effect on the model’s quality. Linear classifiers have a much higher model bias than their nonlinear counterparts and simply lack the flexibility to overfit at unreasonably large cost values.</p>
-<p>The second term in <a href="#eq-svm-cls-loss" class="quarto-xref">Equation&nbsp;<span>16.13</span></a> summarizes the overall magnitude of the model parameters, apart from the intercept. This acts as a regularizing term, similar to the ridge penalty<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a>. Since this term sums the squared coefficients, SVM models require all numeric predictors to have the same mean and standard deviation, or to be on at least the same scale.</p>
-<p>The linear SVM prediction equation can be derived from this objective function. When predicting an unknown sample <span class="math inline">\boldsymbol{u}</span>, it is:</p>
-<p><span id="eq-svm-linear-model"><span class="math display">
-\hat{\eta} = \hat{\beta}_0+\sum_{i=1}^{n_{tr}} \tilde{y}_i\hat{\alpha}_i \left(\sum_{j=1}^p x_{ij} u_j \right) = \hat{\beta}_0+\sum_{i=1}^{n_{tr}} \tilde{y}_i\hat{\alpha}_i \boldsymbol{x}_i'\boldsymbol{u}
-\tag{16.14}</span></span></p>
-<p>where the <span class="math inline">\alpha_i</span> values (<span class="math inline">i = 1, \ldots, n_{tr}</span>) that are non-negative. For a linear SVM classifier, we can write this equation as a familiar slope/intercept model:</p>
-<p><span class="math display">
-\hat{\eta} = \hat{\beta}_0 + \left[\boldsymbol{X}'(\hat{\boldsymbol{\alpha}} \circ \tilde{y}_i)\right] \boldsymbol{u} = \hat{\beta}_0 + \boldsymbol{u}'\hat{\boldsymbol{\beta}}
-</span> where neither <span class="math inline">\boldsymbol{X}</span> nor <span class="math inline">\boldsymbol{u}</span> contain elements for the intercept and <span class="math inline">\circ</span> denotes element-wise multiplication.</p>
-<p>One interesting aspect of this result is that training-set points with score predictions greater than 1.0 are assigned <span class="math inline">\alpha_i = 0</span>. This means that the most confidently predicted samples have no direct effect on the prediction equation _since they have no impact on <span class="quarto-unresolved-ref">?eq-svm-cls-loss_</span>. The training set points with strictly positive values are called the <em>support vectors</em> since the prediction equation is composed of these values. This result indicates that some portion of the training set must be stored by the model, which can make it unattractive for large training sets.</p>
-<p>Again, SVMs only produce predictive score values. To convert them to class probabilities, Platt scaling <span class="citation" data-cites="platt1999probabilistic">(<a href="#ref-platt1999probabilistic" role="doc-biblioref">Platt 1999</a>)</span> is used to estimate a slope and intercept for a logistic function that takes <span class="math inline">\hat{\eta}</span> as input and produces probability-like estimates. We’ll show an example of this below.</p>
-<p>For multiclass SVM models, a set of distinct <span class="math inline">C</span> one-class-versus-all binary SVM models is created and trained separately. The hard class predictions are assigned to whichever model predicted the largest value of <span class="math inline">\hat{\eta}_{ij}</span> (across <span class="math inline">j</span>). Platt scaling is again used to create class probability estimates. An alternative is to use a collection of <span class="math inline">C(C-1)/2</span> pairwise SVM models.</p>
-<p>Let’s see how this model performed on the forestation data. The same set of preprocessing options used for the logistic model was applied to the SVM model, with a fixed cost of <span class="math inline">\mathcal{C} = 1.0</span>. The results were very similar to those of the unpenalized logistic model, as seen in <a href="#fig-forest-logistic-svm" class="quarto-xref">Figure&nbsp;<span>16.16</span></a>.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-forest-logistic-svm" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-forest-logistic-svm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="cls-linear_files/figure-html/fig-forest-logistic-svm-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-forest-logistic-svm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;16.16: Cross-validated Brier scores for several stages of feature engineering of the forestation data using basic logistic regression and linear SVMs.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>As before, the most complex feature-engineering strategy yielded the best performance for these data. If we were to fit that pipeline on the training set, we’d find that 1,132 training set points (out of 4,832) were support vectors (and had non-zero <span class="math inline">\alpha_i</span> values). For this fit, the equation used by Platt scaling to convert the <span class="math inline">\hat{\eta}</span> scores to probability-like values for the forested class level was:</p>
-<p><span class="math display">
-\hat{\pi}_i = \Big[1 + \exp(0.092 -1.44\, \hat{\eta}) \Big]^{-1}
-</span> We’ll delve into more details of these models in the next chapter, including more on preprocessing requirements.</p>
-<p><a href="https://tidymodels.aml4td.org/chapters/cls-linear.html#sec-cls-svm-lin"><i class="fa-brands fa-r-project fa-Large" aria-label="r-project"></i></a></p>
-</section>
-<section id="sec-multinomial-reg" class="level2" data-number="16.5">
-<h2 data-number="16.5" class="anchored" data-anchor-id="sec-multinomial-reg"><span class="header-section-number">16.5</span> Multinomial Regression</h2>
+<section id="sec-multinomial-reg" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="sec-multinomial-reg"><span class="header-section-number">16.3</span> Multinomial Regression</h2>
 <p><a href="https://tidymodels.aml4td.org/chapters/cls-linear.html#sec-multinomial-reg"><i class="fa-brands fa-r-project fa-Large" aria-label="r-project"></i></a></p>
+</section>
+<section id="sec-cls-gam" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="sec-cls-gam"><span class="header-section-number">16.4</span> Generalized Additive Models</h2>
+<p><a href="https://tidymodels.aml4td.org/chapters/cls-linear.html#sec-cls-gam"><i class="fa-brands fa-r-project fa-Large" aria-label="r-project"></i></a></p>
 </section>
 <section id="chapter-references" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="chapter-references">Chapter References</h2>
@@ -3674,9 +3615,6 @@ Cramer, J. 2004. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;
 </div>
 <div id="ref-cressie2015statistics" class="csl-entry" role="listitem">
 Cressie, N. 2015. <em>Statistics for Spatial Data</em>. John Wiley &amp; Sons.
-</div>
-<div id="ref-cristianini2000introduction" class="csl-entry" role="listitem">
-Cristianini, N, and J Shawe-Taylor. 2000. <em>An Introduction to Support Vector Machines and Other Kernel-Based Learning Methods</em>. Cambridge university press.
 </div>
 <div id="ref-lar" class="csl-entry" role="listitem">
 Efron, B, T Hastie, I Johnstone, and R Tibshirani. 2004. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=+Least+angle+regression+&amp;as_ylo=2004&amp;as_yhi=2004&amp;btnG=">Least Angle Regression</a>.”</span> <em>The Annals of Statistics</em> 32 (2): 407–99.
@@ -3735,9 +3673,6 @@ Nikparvar, B, and JC Thill. 2021. <span>“<a href="https://scholar.google.com/s
 <div id="ref-park2008bayesian" class="csl-entry" role="listitem">
 Park, T, and G Casella. 2008. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=The+Bayesian+lasso&amp;as_ylo=2008&amp;as_yhi=2008&amp;btnG=">The <span>Bayesian</span> Lasso</a>.”</span> <em>Journal of the American Statistical Association</em> 103 (482): 681–86.
 </div>
-<div id="ref-platt1999probabilistic" class="csl-entry" role="listitem">
-Platt, J. 1999. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Probabilistic+outputs+for+support+vector+machines+and+comparisons+to+regularized+likelihood+methods&amp;as_ylo=1999&amp;as_yhi=1999&amp;btnG=">Probabilistic Outputs for Support Vector Machines and Comparisons to Regularized Likelihood Methods</a>.”</span> <em>Advances in Large Margin Classifiers</em> 10 (3): 61–74.
-</div>
 <div id="ref-pregibon1981logistic" class="csl-entry" role="listitem">
 Pregibon, D. 1981. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Logistic+regression+diagnostics&amp;as_ylo=1981&amp;as_yhi=1981&amp;btnG=">Logistic Regression Diagnostics</a>.”</span> <em>The Annals of Statistics</em> 9 (4): 705–24.
 </div>
@@ -3785,7 +3720,6 @@ Zou, H, and T Hastie. 2005. <span>“<a href="https://scholar.google.com/scholar
 <li id="fn13"><p>This depends on the implementation, though.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn14"><p>The main exception is standard ridge regression, where covariance matrices can be computed once the penalty value is finalized.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn15"><p>It is not required because it does not contain any of the <span class="math inline">\beta</span> parameters and will not change the optimization.<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn16"><p>In fact, some representations of this equation divide both terms by <span class="math inline">\gamma = 1/\mathcal{C}</span>, so that the tuning parameter is a coefficient for the squared norm of the parameters.<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
