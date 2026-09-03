@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -61,10 +64,10 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c7488dab8eb61c0b5a1577c7c12d4487.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a668b9be8a66a05ff54f7262d2bec69b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -465,7 +468,7 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 <div class="dev-preview-banner">
   <strong>Draft preview</strong>
-  <span>branch <code>residual-networks</code> at <code>db044d6</code></span>
+  <span>branch <code>residual-networks</code> at <code>e9080f3</code></span>
   <span>Not the published book —
     <a href="https://aml4td.org">read aml4td.org</a></span>
   <span><a href="https://dev.aml4td.org/">all previews</a></span>
@@ -521,23 +524,23 @@ window.Quarto = {
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-indicators-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="zxxgeoorih" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zxxgeoorih table {
+<div id="mfgjnkdgov" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mfgjnkdgov table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zxxgeoorih thead, #zxxgeoorih tbody, #zxxgeoorih tfoot, #zxxgeoorih tr, #zxxgeoorih td, #zxxgeoorih th {
+#mfgjnkdgov thead, #mfgjnkdgov tbody, #mfgjnkdgov tfoot, #mfgjnkdgov tr, #mfgjnkdgov td, #mfgjnkdgov th {
   border-style: none;
 }
 
-#zxxgeoorih p {
+#mfgjnkdgov p {
   margin: 0;
   padding: 0;
 }
 
-#zxxgeoorih .gt_table {
+#mfgjnkdgov .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -563,12 +566,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#zxxgeoorih .gt_caption {
+#mfgjnkdgov .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zxxgeoorih .gt_title {
+#mfgjnkdgov .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -580,7 +583,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#zxxgeoorih .gt_subtitle {
+#mfgjnkdgov .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -592,7 +595,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#zxxgeoorih .gt_heading {
+#mfgjnkdgov .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -604,13 +607,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#zxxgeoorih .gt_bottom_border {
+#mfgjnkdgov .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zxxgeoorih .gt_col_headings {
+#mfgjnkdgov .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -625,7 +628,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#zxxgeoorih .gt_col_heading {
+#mfgjnkdgov .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -645,7 +648,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#zxxgeoorih .gt_column_spanner_outer {
+#mfgjnkdgov .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -657,15 +660,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#zxxgeoorih .gt_column_spanner_outer:first-child {
+#mfgjnkdgov .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zxxgeoorih .gt_column_spanner_outer:last-child {
+#mfgjnkdgov .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zxxgeoorih .gt_column_spanner {
+#mfgjnkdgov .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -677,11 +680,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#zxxgeoorih .gt_spanner_row {
+#mfgjnkdgov .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zxxgeoorih .gt_group_heading {
+#mfgjnkdgov .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -707,7 +710,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#zxxgeoorih .gt_empty_group_heading {
+#mfgjnkdgov .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -722,15 +725,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#zxxgeoorih .gt_from_md > :first-child {
+#mfgjnkdgov .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zxxgeoorih .gt_from_md > :last-child {
+#mfgjnkdgov .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zxxgeoorih .gt_row {
+#mfgjnkdgov .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -749,7 +752,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#zxxgeoorih .gt_stub {
+#mfgjnkdgov .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -762,7 +765,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#zxxgeoorih .gt_stub_row_group {
+#mfgjnkdgov .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -776,15 +779,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#zxxgeoorih .gt_row_group_first td {
+#mfgjnkdgov .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zxxgeoorih .gt_row_group_first th {
+#mfgjnkdgov .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zxxgeoorih .gt_summary_row {
+#mfgjnkdgov .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -794,16 +797,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#zxxgeoorih .gt_first_summary_row {
+#mfgjnkdgov .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zxxgeoorih .gt_first_summary_row.thick {
+#mfgjnkdgov .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zxxgeoorih .gt_last_summary_row {
+#mfgjnkdgov .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -813,7 +816,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#zxxgeoorih .gt_grand_summary_row {
+#mfgjnkdgov .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -823,7 +826,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#zxxgeoorih .gt_first_grand_summary_row {
+#mfgjnkdgov .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -833,7 +836,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#zxxgeoorih .gt_last_grand_summary_row_top {
+#mfgjnkdgov .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -843,11 +846,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#zxxgeoorih .gt_striped {
+#mfgjnkdgov .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zxxgeoorih .gt_table_body {
+#mfgjnkdgov .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -856,7 +859,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#zxxgeoorih .gt_footnotes {
+#mfgjnkdgov .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -870,7 +873,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#zxxgeoorih .gt_footnote {
+#mfgjnkdgov .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -879,7 +882,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#zxxgeoorih .gt_sourcenotes {
+#mfgjnkdgov .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -893,7 +896,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#zxxgeoorih .gt_sourcenote {
+#mfgjnkdgov .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -901,72 +904,72 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#zxxgeoorih .gt_left {
+#mfgjnkdgov .gt_left {
   text-align: left;
 }
 
-#zxxgeoorih .gt_center {
+#mfgjnkdgov .gt_center {
   text-align: center;
 }
 
-#zxxgeoorih .gt_right {
+#mfgjnkdgov .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zxxgeoorih .gt_font_normal {
+#mfgjnkdgov .gt_font_normal {
   font-weight: normal;
 }
 
-#zxxgeoorih .gt_font_bold {
+#mfgjnkdgov .gt_font_bold {
   font-weight: bold;
 }
 
-#zxxgeoorih .gt_font_italic {
+#mfgjnkdgov .gt_font_italic {
   font-style: italic;
 }
 
-#zxxgeoorih .gt_super {
+#mfgjnkdgov .gt_super {
   font-size: 65%;
 }
 
-#zxxgeoorih .gt_footnote_marks {
+#mfgjnkdgov .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zxxgeoorih .gt_asterisk {
+#mfgjnkdgov .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zxxgeoorih .gt_indent_1 {
+#mfgjnkdgov .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zxxgeoorih .gt_indent_2 {
+#mfgjnkdgov .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zxxgeoorih .gt_indent_3 {
+#mfgjnkdgov .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zxxgeoorih .gt_indent_4 {
+#mfgjnkdgov .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zxxgeoorih .gt_indent_5 {
+#mfgjnkdgov .gt_indent_5 {
   text-indent: 25px;
 }
 
-#zxxgeoorih .katex-display {
+#mfgjnkdgov .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#zxxgeoorih div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mfgjnkdgov div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1040,23 +1043,23 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-ref-cell-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="qliufzypjh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qliufzypjh table {
+<div id="vyjkwxgvhl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vyjkwxgvhl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qliufzypjh thead, #qliufzypjh tbody, #qliufzypjh tfoot, #qliufzypjh tr, #qliufzypjh td, #qliufzypjh th {
+#vyjkwxgvhl thead, #vyjkwxgvhl tbody, #vyjkwxgvhl tfoot, #vyjkwxgvhl tr, #vyjkwxgvhl td, #vyjkwxgvhl th {
   border-style: none;
 }
 
-#qliufzypjh p {
+#vyjkwxgvhl p {
   margin: 0;
   padding: 0;
 }
 
-#qliufzypjh .gt_table {
+#vyjkwxgvhl .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1082,12 +1085,12 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   border-left-color: #D3D3D3;
 }
 
-#qliufzypjh .gt_caption {
+#vyjkwxgvhl .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qliufzypjh .gt_title {
+#vyjkwxgvhl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1099,7 +1102,7 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   border-bottom-width: 0;
 }
 
-#qliufzypjh .gt_subtitle {
+#vyjkwxgvhl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1111,7 +1114,7 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   border-top-width: 0;
 }
 
-#qliufzypjh .gt_heading {
+#vyjkwxgvhl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1123,13 +1126,13 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   border-right-color: #D3D3D3;
 }
 
-#qliufzypjh .gt_bottom_border {
+#vyjkwxgvhl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qliufzypjh .gt_col_headings {
+#vyjkwxgvhl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1144,7 +1147,7 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   border-right-color: #D3D3D3;
 }
 
-#qliufzypjh .gt_col_heading {
+#vyjkwxgvhl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1164,7 +1167,7 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   overflow-x: hidden;
 }
 
-#qliufzypjh .gt_column_spanner_outer {
+#vyjkwxgvhl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1176,15 +1179,15 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   padding-right: 4px;
 }
 
-#qliufzypjh .gt_column_spanner_outer:first-child {
+#vyjkwxgvhl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qliufzypjh .gt_column_spanner_outer:last-child {
+#vyjkwxgvhl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qliufzypjh .gt_column_spanner {
+#vyjkwxgvhl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1196,11 +1199,11 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   width: 100%;
 }
 
-#qliufzypjh .gt_spanner_row {
+#vyjkwxgvhl .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qliufzypjh .gt_group_heading {
+#vyjkwxgvhl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1226,7 +1229,7 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   text-align: left;
 }
 
-#qliufzypjh .gt_empty_group_heading {
+#vyjkwxgvhl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1241,15 +1244,15 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   vertical-align: middle;
 }
 
-#qliufzypjh .gt_from_md > :first-child {
+#vyjkwxgvhl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qliufzypjh .gt_from_md > :last-child {
+#vyjkwxgvhl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qliufzypjh .gt_row {
+#vyjkwxgvhl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1268,7 +1271,7 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   overflow-x: hidden;
 }
 
-#qliufzypjh .gt_stub {
+#vyjkwxgvhl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1281,7 +1284,7 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   padding-right: 5px;
 }
 
-#qliufzypjh .gt_stub_row_group {
+#vyjkwxgvhl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1295,15 +1298,15 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   vertical-align: top;
 }
 
-#qliufzypjh .gt_row_group_first td {
+#vyjkwxgvhl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qliufzypjh .gt_row_group_first th {
+#vyjkwxgvhl .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qliufzypjh .gt_summary_row {
+#vyjkwxgvhl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1313,16 +1316,16 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   padding-right: 5px;
 }
 
-#qliufzypjh .gt_first_summary_row {
+#vyjkwxgvhl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qliufzypjh .gt_first_summary_row.thick {
+#vyjkwxgvhl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qliufzypjh .gt_last_summary_row {
+#vyjkwxgvhl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1332,7 +1335,7 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   border-bottom-color: #D3D3D3;
 }
 
-#qliufzypjh .gt_grand_summary_row {
+#vyjkwxgvhl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1342,7 +1345,7 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   padding-right: 5px;
 }
 
-#qliufzypjh .gt_first_grand_summary_row {
+#vyjkwxgvhl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1352,7 +1355,7 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   border-top-color: #D3D3D3;
 }
 
-#qliufzypjh .gt_last_grand_summary_row_top {
+#vyjkwxgvhl .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1362,11 +1365,11 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   border-bottom-color: #D3D3D3;
 }
 
-#qliufzypjh .gt_striped {
+#vyjkwxgvhl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qliufzypjh .gt_table_body {
+#vyjkwxgvhl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1375,7 +1378,7 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   border-bottom-color: #D3D3D3;
 }
 
-#qliufzypjh .gt_footnotes {
+#vyjkwxgvhl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1389,7 +1392,7 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   border-right-color: #D3D3D3;
 }
 
-#qliufzypjh .gt_footnote {
+#vyjkwxgvhl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1398,7 +1401,7 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   padding-right: 5px;
 }
 
-#qliufzypjh .gt_sourcenotes {
+#vyjkwxgvhl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1412,7 +1415,7 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   border-right-color: #D3D3D3;
 }
 
-#qliufzypjh .gt_sourcenote {
+#vyjkwxgvhl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1420,72 +1423,72 @@ y_i = \beta_0 + \beta_1x_{i1} + \ldots + \beta_4x_{i4} + \epsilon_i
   padding-right: 5px;
 }
 
-#qliufzypjh .gt_left {
+#vyjkwxgvhl .gt_left {
   text-align: left;
 }
 
-#qliufzypjh .gt_center {
+#vyjkwxgvhl .gt_center {
   text-align: center;
 }
 
-#qliufzypjh .gt_right {
+#vyjkwxgvhl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qliufzypjh .gt_font_normal {
+#vyjkwxgvhl .gt_font_normal {
   font-weight: normal;
 }
 
-#qliufzypjh .gt_font_bold {
+#vyjkwxgvhl .gt_font_bold {
   font-weight: bold;
 }
 
-#qliufzypjh .gt_font_italic {
+#vyjkwxgvhl .gt_font_italic {
   font-style: italic;
 }
 
-#qliufzypjh .gt_super {
+#vyjkwxgvhl .gt_super {
   font-size: 65%;
 }
 
-#qliufzypjh .gt_footnote_marks {
+#vyjkwxgvhl .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qliufzypjh .gt_asterisk {
+#vyjkwxgvhl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qliufzypjh .gt_indent_1 {
+#vyjkwxgvhl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qliufzypjh .gt_indent_2 {
+#vyjkwxgvhl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qliufzypjh .gt_indent_3 {
+#vyjkwxgvhl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qliufzypjh .gt_indent_4 {
+#vyjkwxgvhl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qliufzypjh .gt_indent_5 {
+#vyjkwxgvhl .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qliufzypjh .katex-display {
+#vyjkwxgvhl .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qliufzypjh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vyjkwxgvhl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1574,23 +1577,23 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-one-hot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="maigbtnqft" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#maigbtnqft table {
+<div id="seckvtegbq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#seckvtegbq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#maigbtnqft thead, #maigbtnqft tbody, #maigbtnqft tfoot, #maigbtnqft tr, #maigbtnqft td, #maigbtnqft th {
+#seckvtegbq thead, #seckvtegbq tbody, #seckvtegbq tfoot, #seckvtegbq tr, #seckvtegbq td, #seckvtegbq th {
   border-style: none;
 }
 
-#maigbtnqft p {
+#seckvtegbq p {
   margin: 0;
   padding: 0;
 }
 
-#maigbtnqft .gt_table {
+#seckvtegbq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1616,12 +1619,12 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   border-left-color: #D3D3D3;
 }
 
-#maigbtnqft .gt_caption {
+#seckvtegbq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#maigbtnqft .gt_title {
+#seckvtegbq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1633,7 +1636,7 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   border-bottom-width: 0;
 }
 
-#maigbtnqft .gt_subtitle {
+#seckvtegbq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1645,7 +1648,7 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   border-top-width: 0;
 }
 
-#maigbtnqft .gt_heading {
+#seckvtegbq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1657,13 +1660,13 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   border-right-color: #D3D3D3;
 }
 
-#maigbtnqft .gt_bottom_border {
+#seckvtegbq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#maigbtnqft .gt_col_headings {
+#seckvtegbq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1678,7 +1681,7 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   border-right-color: #D3D3D3;
 }
 
-#maigbtnqft .gt_col_heading {
+#seckvtegbq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1698,7 +1701,7 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   overflow-x: hidden;
 }
 
-#maigbtnqft .gt_column_spanner_outer {
+#seckvtegbq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1710,15 +1713,15 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   padding-right: 4px;
 }
 
-#maigbtnqft .gt_column_spanner_outer:first-child {
+#seckvtegbq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#maigbtnqft .gt_column_spanner_outer:last-child {
+#seckvtegbq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#maigbtnqft .gt_column_spanner {
+#seckvtegbq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1730,11 +1733,11 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   width: 100%;
 }
 
-#maigbtnqft .gt_spanner_row {
+#seckvtegbq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#maigbtnqft .gt_group_heading {
+#seckvtegbq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1760,7 +1763,7 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   text-align: left;
 }
 
-#maigbtnqft .gt_empty_group_heading {
+#seckvtegbq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1775,15 +1778,15 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   vertical-align: middle;
 }
 
-#maigbtnqft .gt_from_md > :first-child {
+#seckvtegbq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#maigbtnqft .gt_from_md > :last-child {
+#seckvtegbq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#maigbtnqft .gt_row {
+#seckvtegbq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1802,7 +1805,7 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   overflow-x: hidden;
 }
 
-#maigbtnqft .gt_stub {
+#seckvtegbq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1815,7 +1818,7 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   padding-right: 5px;
 }
 
-#maigbtnqft .gt_stub_row_group {
+#seckvtegbq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1829,15 +1832,15 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   vertical-align: top;
 }
 
-#maigbtnqft .gt_row_group_first td {
+#seckvtegbq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#maigbtnqft .gt_row_group_first th {
+#seckvtegbq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#maigbtnqft .gt_summary_row {
+#seckvtegbq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1847,16 +1850,16 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   padding-right: 5px;
 }
 
-#maigbtnqft .gt_first_summary_row {
+#seckvtegbq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#maigbtnqft .gt_first_summary_row.thick {
+#seckvtegbq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#maigbtnqft .gt_last_summary_row {
+#seckvtegbq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1866,7 +1869,7 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   border-bottom-color: #D3D3D3;
 }
 
-#maigbtnqft .gt_grand_summary_row {
+#seckvtegbq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1876,7 +1879,7 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   padding-right: 5px;
 }
 
-#maigbtnqft .gt_first_grand_summary_row {
+#seckvtegbq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1886,7 +1889,7 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   border-top-color: #D3D3D3;
 }
 
-#maigbtnqft .gt_last_grand_summary_row_top {
+#seckvtegbq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1896,11 +1899,11 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   border-bottom-color: #D3D3D3;
 }
 
-#maigbtnqft .gt_striped {
+#seckvtegbq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#maigbtnqft .gt_table_body {
+#seckvtegbq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1909,7 +1912,7 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   border-bottom-color: #D3D3D3;
 }
 
-#maigbtnqft .gt_footnotes {
+#seckvtegbq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1923,7 +1926,7 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   border-right-color: #D3D3D3;
 }
 
-#maigbtnqft .gt_footnote {
+#seckvtegbq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1932,7 +1935,7 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   padding-right: 5px;
 }
 
-#maigbtnqft .gt_sourcenotes {
+#seckvtegbq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1946,7 +1949,7 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   border-right-color: #D3D3D3;
 }
 
-#maigbtnqft .gt_sourcenote {
+#seckvtegbq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1954,72 +1957,72 @@ Table&nbsp;6.2: An example of linear regression parameter estimates correspondin
   padding-right: 5px;
 }
 
-#maigbtnqft .gt_left {
+#seckvtegbq .gt_left {
   text-align: left;
 }
 
-#maigbtnqft .gt_center {
+#seckvtegbq .gt_center {
   text-align: center;
 }
 
-#maigbtnqft .gt_right {
+#seckvtegbq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#maigbtnqft .gt_font_normal {
+#seckvtegbq .gt_font_normal {
   font-weight: normal;
 }
 
-#maigbtnqft .gt_font_bold {
+#seckvtegbq .gt_font_bold {
   font-weight: bold;
 }
 
-#maigbtnqft .gt_font_italic {
+#seckvtegbq .gt_font_italic {
   font-style: italic;
 }
 
-#maigbtnqft .gt_super {
+#seckvtegbq .gt_super {
   font-size: 65%;
 }
 
-#maigbtnqft .gt_footnote_marks {
+#seckvtegbq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#maigbtnqft .gt_asterisk {
+#seckvtegbq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#maigbtnqft .gt_indent_1 {
+#seckvtegbq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#maigbtnqft .gt_indent_2 {
+#seckvtegbq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#maigbtnqft .gt_indent_3 {
+#seckvtegbq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#maigbtnqft .gt_indent_4 {
+#seckvtegbq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#maigbtnqft .gt_indent_5 {
+#seckvtegbq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#maigbtnqft .katex-display {
+#seckvtegbq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#maigbtnqft div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#seckvtegbq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2156,23 +2159,23 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-feature-hash-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="aejcwqwhrn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#aejcwqwhrn table {
+<div id="kujqewqbju" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kujqewqbju table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#aejcwqwhrn thead, #aejcwqwhrn tbody, #aejcwqwhrn tfoot, #aejcwqwhrn tr, #aejcwqwhrn td, #aejcwqwhrn th {
+#kujqewqbju thead, #kujqewqbju tbody, #kujqewqbju tfoot, #kujqewqbju tr, #kujqewqbju td, #kujqewqbju th {
   border-style: none;
 }
 
-#aejcwqwhrn p {
+#kujqewqbju p {
   margin: 0;
   padding: 0;
 }
 
-#aejcwqwhrn .gt_table {
+#kujqewqbju .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2198,12 +2201,12 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   border-left-color: #D3D3D3;
 }
 
-#aejcwqwhrn .gt_caption {
+#kujqewqbju .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#aejcwqwhrn .gt_title {
+#kujqewqbju .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2215,7 +2218,7 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   border-bottom-width: 0;
 }
 
-#aejcwqwhrn .gt_subtitle {
+#kujqewqbju .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2227,7 +2230,7 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   border-top-width: 0;
 }
 
-#aejcwqwhrn .gt_heading {
+#kujqewqbju .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2239,13 +2242,13 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   border-right-color: #D3D3D3;
 }
 
-#aejcwqwhrn .gt_bottom_border {
+#kujqewqbju .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#aejcwqwhrn .gt_col_headings {
+#kujqewqbju .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2260,7 +2263,7 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   border-right-color: #D3D3D3;
 }
 
-#aejcwqwhrn .gt_col_heading {
+#kujqewqbju .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2280,7 +2283,7 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   overflow-x: hidden;
 }
 
-#aejcwqwhrn .gt_column_spanner_outer {
+#kujqewqbju .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2292,15 +2295,15 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   padding-right: 4px;
 }
 
-#aejcwqwhrn .gt_column_spanner_outer:first-child {
+#kujqewqbju .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#aejcwqwhrn .gt_column_spanner_outer:last-child {
+#kujqewqbju .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#aejcwqwhrn .gt_column_spanner {
+#kujqewqbju .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2312,11 +2315,11 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   width: 100%;
 }
 
-#aejcwqwhrn .gt_spanner_row {
+#kujqewqbju .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#aejcwqwhrn .gt_group_heading {
+#kujqewqbju .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2342,7 +2345,7 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   text-align: left;
 }
 
-#aejcwqwhrn .gt_empty_group_heading {
+#kujqewqbju .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2357,15 +2360,15 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   vertical-align: middle;
 }
 
-#aejcwqwhrn .gt_from_md > :first-child {
+#kujqewqbju .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#aejcwqwhrn .gt_from_md > :last-child {
+#kujqewqbju .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#aejcwqwhrn .gt_row {
+#kujqewqbju .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2384,7 +2387,7 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   overflow-x: hidden;
 }
 
-#aejcwqwhrn .gt_stub {
+#kujqewqbju .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2397,7 +2400,7 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   padding-right: 5px;
 }
 
-#aejcwqwhrn .gt_stub_row_group {
+#kujqewqbju .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2411,15 +2414,15 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   vertical-align: top;
 }
 
-#aejcwqwhrn .gt_row_group_first td {
+#kujqewqbju .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#aejcwqwhrn .gt_row_group_first th {
+#kujqewqbju .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#aejcwqwhrn .gt_summary_row {
+#kujqewqbju .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2429,16 +2432,16 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   padding-right: 5px;
 }
 
-#aejcwqwhrn .gt_first_summary_row {
+#kujqewqbju .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#aejcwqwhrn .gt_first_summary_row.thick {
+#kujqewqbju .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#aejcwqwhrn .gt_last_summary_row {
+#kujqewqbju .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2448,7 +2451,7 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   border-bottom-color: #D3D3D3;
 }
 
-#aejcwqwhrn .gt_grand_summary_row {
+#kujqewqbju .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2458,7 +2461,7 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   padding-right: 5px;
 }
 
-#aejcwqwhrn .gt_first_grand_summary_row {
+#kujqewqbju .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2468,7 +2471,7 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   border-top-color: #D3D3D3;
 }
 
-#aejcwqwhrn .gt_last_grand_summary_row_top {
+#kujqewqbju .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2478,11 +2481,11 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   border-bottom-color: #D3D3D3;
 }
 
-#aejcwqwhrn .gt_striped {
+#kujqewqbju .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#aejcwqwhrn .gt_table_body {
+#kujqewqbju .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2491,7 +2494,7 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   border-bottom-color: #D3D3D3;
 }
 
-#aejcwqwhrn .gt_footnotes {
+#kujqewqbju .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2505,7 +2508,7 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   border-right-color: #D3D3D3;
 }
 
-#aejcwqwhrn .gt_footnote {
+#kujqewqbju .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2514,7 +2517,7 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   padding-right: 5px;
 }
 
-#aejcwqwhrn .gt_sourcenotes {
+#kujqewqbju .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2528,7 +2531,7 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   border-right-color: #D3D3D3;
 }
 
-#aejcwqwhrn .gt_sourcenote {
+#kujqewqbju .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2536,72 +2539,72 @@ Figure&nbsp;6.1: The frequency distribution of agents in the training set.
   padding-right: 5px;
 }
 
-#aejcwqwhrn .gt_left {
+#kujqewqbju .gt_left {
   text-align: left;
 }
 
-#aejcwqwhrn .gt_center {
+#kujqewqbju .gt_center {
   text-align: center;
 }
 
-#aejcwqwhrn .gt_right {
+#kujqewqbju .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#aejcwqwhrn .gt_font_normal {
+#kujqewqbju .gt_font_normal {
   font-weight: normal;
 }
 
-#aejcwqwhrn .gt_font_bold {
+#kujqewqbju .gt_font_bold {
   font-weight: bold;
 }
 
-#aejcwqwhrn .gt_font_italic {
+#kujqewqbju .gt_font_italic {
   font-style: italic;
 }
 
-#aejcwqwhrn .gt_super {
+#kujqewqbju .gt_super {
   font-size: 65%;
 }
 
-#aejcwqwhrn .gt_footnote_marks {
+#kujqewqbju .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#aejcwqwhrn .gt_asterisk {
+#kujqewqbju .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#aejcwqwhrn .gt_indent_1 {
+#kujqewqbju .gt_indent_1 {
   text-indent: 5px;
 }
 
-#aejcwqwhrn .gt_indent_2 {
+#kujqewqbju .gt_indent_2 {
   text-indent: 10px;
 }
 
-#aejcwqwhrn .gt_indent_3 {
+#kujqewqbju .gt_indent_3 {
   text-indent: 15px;
 }
 
-#aejcwqwhrn .gt_indent_4 {
+#kujqewqbju .gt_indent_4 {
   text-indent: 20px;
 }
 
-#aejcwqwhrn .gt_indent_5 {
+#kujqewqbju .gt_indent_5 {
   text-indent: 25px;
 }
 
-#aejcwqwhrn .katex-display {
+#kujqewqbju .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#aejcwqwhrn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#kujqewqbju div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2852,23 +2855,23 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-effect-estimates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="cxdwcwhltz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cxdwcwhltz table {
+<div id="smuqzvovoo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#smuqzvovoo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cxdwcwhltz thead, #cxdwcwhltz tbody, #cxdwcwhltz tfoot, #cxdwcwhltz tr, #cxdwcwhltz td, #cxdwcwhltz th {
+#smuqzvovoo thead, #smuqzvovoo tbody, #smuqzvovoo tfoot, #smuqzvovoo tr, #smuqzvovoo td, #smuqzvovoo th {
   border-style: none;
 }
 
-#cxdwcwhltz p {
+#smuqzvovoo p {
   margin: 0;
   padding: 0;
 }
 
-#cxdwcwhltz .gt_table {
+#smuqzvovoo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2894,12 +2897,12 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   border-left-color: #D3D3D3;
 }
 
-#cxdwcwhltz .gt_caption {
+#smuqzvovoo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cxdwcwhltz .gt_title {
+#smuqzvovoo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2911,7 +2914,7 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   border-bottom-width: 0;
 }
 
-#cxdwcwhltz .gt_subtitle {
+#smuqzvovoo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2923,7 +2926,7 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   border-top-width: 0;
 }
 
-#cxdwcwhltz .gt_heading {
+#smuqzvovoo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2935,13 +2938,13 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   border-right-color: #D3D3D3;
 }
 
-#cxdwcwhltz .gt_bottom_border {
+#smuqzvovoo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cxdwcwhltz .gt_col_headings {
+#smuqzvovoo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2956,7 +2959,7 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   border-right-color: #D3D3D3;
 }
 
-#cxdwcwhltz .gt_col_heading {
+#smuqzvovoo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2976,7 +2979,7 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   overflow-x: hidden;
 }
 
-#cxdwcwhltz .gt_column_spanner_outer {
+#smuqzvovoo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2988,15 +2991,15 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   padding-right: 4px;
 }
 
-#cxdwcwhltz .gt_column_spanner_outer:first-child {
+#smuqzvovoo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cxdwcwhltz .gt_column_spanner_outer:last-child {
+#smuqzvovoo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cxdwcwhltz .gt_column_spanner {
+#smuqzvovoo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3008,11 +3011,11 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   width: 100%;
 }
 
-#cxdwcwhltz .gt_spanner_row {
+#smuqzvovoo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cxdwcwhltz .gt_group_heading {
+#smuqzvovoo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3038,7 +3041,7 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   text-align: left;
 }
 
-#cxdwcwhltz .gt_empty_group_heading {
+#smuqzvovoo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3053,15 +3056,15 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   vertical-align: middle;
 }
 
-#cxdwcwhltz .gt_from_md > :first-child {
+#smuqzvovoo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cxdwcwhltz .gt_from_md > :last-child {
+#smuqzvovoo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cxdwcwhltz .gt_row {
+#smuqzvovoo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3080,7 +3083,7 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   overflow-x: hidden;
 }
 
-#cxdwcwhltz .gt_stub {
+#smuqzvovoo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3093,7 +3096,7 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   padding-right: 5px;
 }
 
-#cxdwcwhltz .gt_stub_row_group {
+#smuqzvovoo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3107,15 +3110,15 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   vertical-align: top;
 }
 
-#cxdwcwhltz .gt_row_group_first td {
+#smuqzvovoo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cxdwcwhltz .gt_row_group_first th {
+#smuqzvovoo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cxdwcwhltz .gt_summary_row {
+#smuqzvovoo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3125,16 +3128,16 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   padding-right: 5px;
 }
 
-#cxdwcwhltz .gt_first_summary_row {
+#smuqzvovoo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cxdwcwhltz .gt_first_summary_row.thick {
+#smuqzvovoo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cxdwcwhltz .gt_last_summary_row {
+#smuqzvovoo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3144,7 +3147,7 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   border-bottom-color: #D3D3D3;
 }
 
-#cxdwcwhltz .gt_grand_summary_row {
+#smuqzvovoo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3154,7 +3157,7 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   padding-right: 5px;
 }
 
-#cxdwcwhltz .gt_first_grand_summary_row {
+#smuqzvovoo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3164,7 +3167,7 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   border-top-color: #D3D3D3;
 }
 
-#cxdwcwhltz .gt_last_grand_summary_row_top {
+#smuqzvovoo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3174,11 +3177,11 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   border-bottom-color: #D3D3D3;
 }
 
-#cxdwcwhltz .gt_striped {
+#smuqzvovoo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cxdwcwhltz .gt_table_body {
+#smuqzvovoo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3187,7 +3190,7 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   border-bottom-color: #D3D3D3;
 }
 
-#cxdwcwhltz .gt_footnotes {
+#smuqzvovoo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3201,7 +3204,7 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   border-right-color: #D3D3D3;
 }
 
-#cxdwcwhltz .gt_footnote {
+#smuqzvovoo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3210,7 +3213,7 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   padding-right: 5px;
 }
 
-#cxdwcwhltz .gt_sourcenotes {
+#smuqzvovoo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3224,7 +3227,7 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   border-right-color: #D3D3D3;
 }
 
-#cxdwcwhltz .gt_sourcenote {
+#smuqzvovoo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3232,72 +3235,72 @@ Figure&nbsp;6.2: The effect encoding results for the hotel rate data. Panel (a) 
   padding-right: 5px;
 }
 
-#cxdwcwhltz .gt_left {
+#smuqzvovoo .gt_left {
   text-align: left;
 }
 
-#cxdwcwhltz .gt_center {
+#smuqzvovoo .gt_center {
   text-align: center;
 }
 
-#cxdwcwhltz .gt_right {
+#smuqzvovoo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cxdwcwhltz .gt_font_normal {
+#smuqzvovoo .gt_font_normal {
   font-weight: normal;
 }
 
-#cxdwcwhltz .gt_font_bold {
+#smuqzvovoo .gt_font_bold {
   font-weight: bold;
 }
 
-#cxdwcwhltz .gt_font_italic {
+#smuqzvovoo .gt_font_italic {
   font-style: italic;
 }
 
-#cxdwcwhltz .gt_super {
+#smuqzvovoo .gt_super {
   font-size: 65%;
 }
 
-#cxdwcwhltz .gt_footnote_marks {
+#smuqzvovoo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cxdwcwhltz .gt_asterisk {
+#smuqzvovoo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cxdwcwhltz .gt_indent_1 {
+#smuqzvovoo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cxdwcwhltz .gt_indent_2 {
+#smuqzvovoo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cxdwcwhltz .gt_indent_3 {
+#smuqzvovoo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cxdwcwhltz .gt_indent_4 {
+#smuqzvovoo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cxdwcwhltz .gt_indent_5 {
+#smuqzvovoo .gt_indent_5 {
   text-indent: 25px;
 }
 
-#cxdwcwhltz .katex-display {
+#smuqzvovoo .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#cxdwcwhltz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#smuqzvovoo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -61,10 +64,10 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c7488dab8eb61c0b5a1577c7c12d4487.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a668b9be8a66a05ff54f7262d2bec69b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -488,7 +491,7 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 <div class="dev-preview-banner">
   <strong>Draft preview</strong>
-  <span>branch <code>residual-networks</code> at <code>db044d6</code></span>
+  <span>branch <code>residual-networks</code> at <code>e9080f3</code></span>
   <span>Not the published book —
     <a href="https://aml4td.org">read aml4td.org</a></span>
   <span><a href="https://dev.aml4td.org/">all previews</a></span>
@@ -1553,12 +1556,12 @@ Figure&nbsp;18.12: Histograms of the distributions of a hidden unit with ReLU ac
 }^{\text{Standard MLP}}
 \qquad\qquad
 \overbrace{
-\begin{alignat*}{}
+\begin{alignedat}{3}
 \boldsymbol{H}_1 &amp;{}={} &amp; f_1(\boldsymbol{x}) &amp;{}+{} &amp;\boldsymbol{x} \notag \\
 \boldsymbol{H}_2 &amp;{}={} &amp; f_2(\boldsymbol{H}_1) &amp;{}+{} &amp;\boldsymbol{H}_1 \notag \\
 \boldsymbol{H}_3 &amp;{}={} &amp; f_3(\boldsymbol{H}_2) &amp;{}+{} &amp;\boldsymbol{H}_2 \notag \\
 \boldsymbol{Y} &amp;{}={} &amp; f_4(\boldsymbol{H}_3) \notag
-\end{alignat*}}^{\text{Residual Connections}}
+\end{alignedat}}^{\text{Residual Connections}}
 \tag{18.1}</span></span></p>
 <p>For the MLP architecture, the idea is that ordinary feed-forward networks are tasked with learning, at each layer, a better representation of the outcome via <span class="math inline">f_i(\cdot)</span>. This parameterization may be difficult to optimize because changes between layers may be very small, leading to potential issues with gradient magnitudes.</p>
 <p>A residual network, shown on the right-hand side of <a href="#eq-resid-net" class="quarto-xref">Equation&nbsp;<span>18.1</span></a>, takes the current features prior to the hidden layer and adds them back into the embeddings (post-activation). In other words, the skip comes <em>before</em> <span class="math inline">f_i(\cdot)</span> and is added to the result <em>after</em> <span class="math inline">f_i(\cdot)</span> applies its activation. We’ll use the term <em>residual block</em> to describe the operations shown in each of the top three rows of the right-hand side.</p>
@@ -1586,7 +1589,7 @@ Figure&nbsp;18.12: Histograms of the distributions of a hidden unit with ReLU ac
 \boldsymbol{H}_1 = \boldsymbol{W}_1^{(2)}f_1\left(b(\boldsymbol{W}_1^{(1)}\boldsymbol{x})\right) + \boldsymbol{P}_1\boldsymbol{x}
 </span></p>
 <p>It is difficult to say exactly why residual connections make it easier to train these models. This is partly because residual connections are almost always used in conjunction with batch normalization, as they were in <span class="citation" data-cites="he2016deep">He et al. (<a href="#ref-he2016deep" role="doc-biblioref">2016</a>)</span>.</p>
-<p><span class="citation" data-cites="li2018visualizing">Li et al. (<a href="#ref-li2018visualizing" role="doc-biblioref">2018</a>)</span> makes a compelling case that using residual connections greatly smooths the loss surface and eliminates many jagged regions where gradient descent can get stuck. Additionally, <span class="citation" data-cites="veit2016residual">(<a href="#ref-veit2016residual" role="doc-biblioref"><strong>veit2016residual?</strong></a>)</span> shows that ResNet models can be rewritten as an additive structure of submodules that are also networks, but many of them are much shallower. They showed that the model might operate more like an ensemble of simpler models and that some of these modules can be ignored without a detrimental effect on performance.</p>
+<p><span class="citation" data-cites="li2018visualizing">Li et al. (<a href="#ref-li2018visualizing" role="doc-biblioref">2018</a>)</span> makes a compelling case that using residual connections greatly smooths the loss surface and eliminates many jagged regions where gradient descent can get stuck. Additionally, <span class="citation" data-cites="veit2016residual">Veit, Wilber, and Belongie (<a href="#ref-veit2016residual" role="doc-biblioref">2016</a>)</span> shows that ResNet models can be rewritten as an additive structure of submodules that are also networks, but many of them are much shallower. They showed that the model might operate more like an ensemble of simpler models and that some of these modules can be ignored without a detrimental effect on performance.</p>
 <p>Let’s move on to discuss a technique that has had a phenomenal impact on the quality of neural networks: attention.</p>
 </section>
 <section id="sec-cls-attention" class="level3" data-number="18.2.3">
@@ -2372,18 +2375,18 @@ Figure&nbsp;18.15: A visualization of how column attention affects the attended 
 </ul></li>
 </ol>
 <p>In total, there are 7,348 learned parameters.</p>
-<p>There are numerous tuning parameters related to the architecture, primarily the embedding sizes and the number of attention iterations. An AutoInt model was tuned over 50 unique candidate values for the following tuning parameters:</p>
+<p>There are numerous tuning parameters related to the architecture, primarily the embedding sizes and the number of attention iterations. An AutoInt model was tuned over 25 unique candidate values for the following tuning parameters:</p>
 <ul>
-<li>Initial embedding dimension from 2 to 25.</li>
-<li>Dropout rate for initial embedding from 0 to 0.5.</li>
-<li>Attention embedding size from 2 to 25.</li>
+<li>Initial embedding dimension from 5 to 50.</li>
+<li>Dropout rate for initial embedding from 0.05 to 0.5.</li>
+<li>Attention embedding size from 2 to 50.</li>
 <li>Number of attention heads from 1 to 8.</li>
 <li>Number of attention blocks from 1 to 6.</li>
-<li>Dropout rate for attention parameters from 0 to 0.5.</li>
+<li>Dropout rate for attention parameters from 0.05 to 0.5.</li>
 <li>Learning rate from 10<sup>-2</sup> to 10<sup>-0.1</sup>.</li>
-<li>Rate schedules of Cyclic, Decay (Expo), Decay (Expo), None, and Step.</li>
+<li>Rate schedules of Cyclic, Decay (Expo), None, and Step.</li>
 <li>Momentum from 0.5 to 0.99.</li>
-<li>Batch size from 64 to 1024.</li>
+<li>Batch size from 16 to 512.</li>
 </ul>
 <p>The models were trained for up to 50 epochs of stochastic gradient descent, with early stopping after 10 consecutive poor results.</p>
 <p>The results are shown in <a href="#fig-auto-int-cls-tune" class="quarto-xref">Figure&nbsp;<span>18.16</span></a> where two other statistics, the average number of training epochs and the number of model parameters, are also included. There is a significant amount of noise in these results, yielding few definitive trends. This is probably due to optimization issues. We can see from the mean number of epochs that models that stopped SGD earlier did worse than others. This suggests that the training process did not go well, perhaps due to poor initialization or a combination of suboptimal tuning parameters (such as a high learning rate combined with high momentum). We don’t see a trend between performance and the number of model parameters in these results.</p>
@@ -2402,7 +2405,7 @@ Figure&nbsp;18.16: AutoInt tuning results for the forestation data.
 </div>
 </div>
 </div>
-<p>The best results corresponded to a model using 13 dimensions for its initial embedding with a dropout rate of 0.12. For attention, 2 blocks, each with 3 and a dimension of 3, were best and had an associated dropout rate of 0.04. The best learning rate was 10<sup>-0.33</sup> with a step schedule. The batch size was 64 samples and the best momentum value was 0.69. The estimated Brier score for this configuration was 0.0802, which is competitive but does not beat the current best model.</p>
+<p>The best results corresponded to a model using 38 dimensions for its initial embedding with a dropout rate of 0.2. For attention, 1 blocks, each with 7 and a dimension of 7, were best and had an associated dropout rate of 0.14. The best learning rate was 10<sup>-0.97</sup> with a none schedule. The batch size was 383 samples and the best momentum value was 0.91. The estimated Brier score for this configuration was 0.0796, which is competitive but does not beat the current best model.</p>
 <p>Now we’ll consider how attention operates on our other data dimension.</p>
 <p><a href="https://tidymodels.aml4td.org/chapters/cls-neural-nets.html#sec-cls-multi-attention"><i class="fa-brands fa-r-project fa-Large" aria-label="r-project"></i></a></p>
 </section>
@@ -2490,7 +2493,7 @@ Figure&nbsp;18.17: An example of how row attention can change the embedding (lan
 </ol>
 <p>In total, there are 1,426,412 learnable parameters.</p>
 <p>A Saint model was tuned over 25 candidates. The parameter ranges were the same as in the previous AutoInt model, as was the type of attention: column-only, row-only, or both. The tuning results in <a href="#fig-saint-cls-tune" class="quarto-xref">Figure&nbsp;<span>18.18</span></a> where, similar to the AutoInt results, most potential patterns are drowned out by the noise. There were eight candidates whose training ended quickly on average, with very poor Brier scores<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a>. These results detrimentally affected the visualization and were removed from the figure.</p>
-<p>The use of a target token didn’t appear to improve performance appreciably, and there is no real trend in the number of attention heads and blocks. Across the candidates, the best conditions were 12 dimensions for its initial embedding. For attention, column attention was optimal with 2 blocks, each with 8 and a dimension of and had an associated dropout rate of 0.39. The optimization favored a learning rate of 10<sup>-1.17</sup> with a cyclic schedule, a batch size of 287 samples and momentum of 0.69. This resulted in a Brier score of 0.0802 which, for the moment, has a slight edge over the other models for these data.</p>
+<p>The use of a target token didn’t appear to improve performance appreciably, and there is no real trend in the number of attention heads and blocks. Across the candidates, the best conditions were 12 dimensions for its initial embedding. For attention, column attention was optimal with 2 blocks, each with 8 and a dimension of and had an associated dropout rate of 0.39. The optimization favored a learning rate of 10<sup>-1.17</sup> with a cyclic schedule, a batch size of 287 samples and momentum of 0.69. This resulted in a Brier score of 0.0796 which, for the moment, has a slight edge over the other models for these data.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-saint-cls-tune" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -3139,6 +3142,9 @@ Sutskever, I, J Martens, G Dahl, and G Hinton. 2013. <span>“<a href="https://s
 </div>
 <div id="ref-vaswani2017attention" class="csl-entry" role="listitem">
 Vaswani, A, N Shazeer, N Parmar, J Uszkoreit, L Jones, A Gomez, Ł Kaiser, and I Polosukhin. 2017. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Attention+is+all+you+need&amp;as_ylo=2017&amp;as_yhi=2017&amp;btnG=">Attention Is All You Need</a>.”</span> <em>Advances in Neural Information Processing Systems</em> 30.
+</div>
+<div id="ref-veit2016residual" class="csl-entry" role="listitem">
+Veit, Andreas, Michael J Wilber, and Serge Belongie. 2016. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Residual+networks+behave+like+ensembles+of+relatively+shallow+networks&amp;as_ylo=2016&amp;as_yhi=2016&amp;btnG=">Residual Networks Behave Like Ensembles of Relatively Shallow Networks</a>.”</span> <em>Advances in Neural Information Processing Systems</em> 29.
 </div>
 <div id="ref-wang2022flexible" class="csl-entry" role="listitem">
 Wang, A, and M Sabuncu. 2022. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=A+flexible+Nadaraya+Watson+head+can+offer+explainable+and+calibrated+classification&amp;as_ylo=2022&amp;as_yhi=2022&amp;btnG=">A Flexible Nadaraya-Watson Head Can Offer Explainable and Calibrated Classification</a>.”</span> <em>arXiv</em>.

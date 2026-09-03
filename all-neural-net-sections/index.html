@@ -2,23 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Max Kuhn">
 <meta name="author" content="Kjell Johnson">
-<meta name="dcterms.date" content="2026-08-28">
+<meta name="dcterms.date" content="2026-09-03">
 
 <title>Applied Machine Learning for Tabular Data</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -63,10 +66,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c7488dab8eb61c0b5a1577c7c12d4487.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a668b9be8a66a05ff54f7262d2bec69b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -425,7 +428,7 @@ div.csl-indent {
 <main class="content" id="quarto-document-content">
 <div class="dev-preview-banner">
   <strong>Draft preview</strong>
-  <span>branch <code>residual-networks</code> at <code>db044d6</code></span>
+  <span>branch <code>residual-networks</code> at <code>e9080f3</code></span>
   <span>Not the published book —
     <a href="https://aml4td.org">read aml4td.org</a></span>
   <span><a href="https://dev.aml4td.org/">all previews</a></span>
@@ -443,7 +446,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Authors</div>
     <div class="quarto-title-meta-contents">
-             <p>Max Kuhn <a href="mailto:mxkuhn@gmail.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0003-2402-136X" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+             <p>Max Kuhn <a href="mailto:mxkuhn@gmail.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0003-2402-136X" class="quarto-title-author-orcid" aria-label="ORCID profile for Max Kuhn"> <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
              <p>Kjell Johnson <a href="mailto:kjell@stattenacity.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
           </div>
   </div>
@@ -451,7 +454,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2026-08-28</p>
+      <p class="date">2026-09-03</p>
     </div>
   </div>
   
@@ -492,7 +495,7 @@ div.csl-indent {
   title = {{Applied Machine Learning for Tabular Data}},
   year = {2023},
   url = { https://aml4td.org},
-  urldate = {2026-08-28}
+  urldate = {2026-09-03}
 }</code></pre>
 </div>
 </section>
@@ -547,19 +550,18 @@ This work is licensed under <a href="http://creativecommons.org/licenses/by-nc-s
 <h2 class="unnumbered anchored" data-anchor-id="computing-notes">Computing Notes</h2>
 <p><a href="https://quarto.org/">Quarto</a> was used to compile and render the materials</p>
 <div class="cell" data-layout-align="center">
-<pre><code>Quarto 1.9.36
+<pre><code>Quarto 1.10.18
 [✓] Checking environment information...
 [✓] Checking versions of quarto binary dependencies...
-      Pandoc version 3.8.3: OK
-      Dart Sass version 1.87.0: OK
-      Deno version 2.4.5: OK
-      Typst version 0.14.2: OK
+      Pandoc version 3.10.0: OK
+      Dart Sass version 1.101.0: OK
+      Deno version 2.7.14: OK
+      Typst version 0.15.1: OK
 [✓] Checking versions of quarto dependencies......OK
 [✓] Checking Quarto installation......OK
-      Version: 1.9.36
+      Version: 1.10.18
 [✓] Checking tools....................OK
       TinyTeX: (external install)
-      Chromium: (not installed)
       Chrome Headless Shell: (not installed)
       VeraPDF: (not installed)
 [✓] Checking LaTeX....................OK
@@ -574,7 +576,7 @@ This work is licensed under <a href="http://creativecommons.org/licenses/by-nc-s
       LibPaths:
         - /Library/Frameworks/R.framework/Versions/4.6/Resources/library
       knitr: 1.51
-      rmarkdown: 2.31
+      rmarkdown: 2.32
 [✓] Checking Knitr engine render......OK
 [✓] Checking Python 3 installation....OK
       Version: 3.9.6
@@ -584,16 +586,23 @@ This work is licensed under <a href="http://creativecommons.org/licenses/by-nc-s
 </div>
 <p><a href="https://en.wikipedia.org/wiki/R_(programming_language)">R version 4.6.0 (2026-04-24)</a> was used for the majority of the computations. <a href="https://en.wikipedia.org/wiki/Torch_(machine_learning)">torch</a> 2.8.0 was also used. The versions of the primary R modeling and visualization packages used here are:</p>
 <div class="cell" data-layout-align="center">
-<pre><code>  Warning: package 'brulee' was built under R version 4.6.1
+<pre><code>  Warning: package 'bslib' was built under R version 4.6.1
+  Warning: package 'lattice' was built under R version 4.6.1
   Warning: package 'MASS' was built under R version 4.6.1
+  Warning: package 'class' was built under R version 4.6.1
   Warning: package 'dials' was built under R version 4.6.1
+  Warning: package 'Matrix' was built under R version 4.6.1
+  Warning: package 'earth' was built under R version 4.6.1
   Warning: package 'recipes' was built under R version 4.6.1
   Warning: package 'partykit' was built under R version 4.6.1
   Warning: package 'mvtnorm' was built under R version 4.6.1
+  Warning: package 'ipred' was built under R version 4.6.1
   Warning: package 'lightgbm' was built under R version 4.6.1
   Warning: package 'lme4' was built under R version 4.6.1
+  Warning: package 'nlme' was built under R version 4.6.1
   Warning: package 'mirai' was built under R version 4.6.1
   Warning: package 'modeldata' was built under R version 4.6.1
+  Warning: package 'rpart.plot' was built under R version 4.6.1
   Warning: package 'themis' was built under R version 4.6.1</code></pre>
 <table class="table table-sm table-striped small">
 <colgroup>
@@ -618,8 +627,8 @@ This work is licensed under <a href="http://creativecommons.org/licenses/by-nc-s
 <td style="text-align: left;"><code>broom.mixed</code> (0.2.9.7)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>brulee</code> (1.1.1)</td>
-<td style="text-align: left;"><code>bslib</code> (0.11.0)</td>
+<td style="text-align: left;"><code>brulee</code> (1.1.1.9000)</td>
+<td style="text-align: left;"><code>bslib</code> (0.12.0)</td>
 <td style="text-align: left;"><code>C50</code> (0.2.0)</td>
 </tr>
 <tr class="odd">
@@ -640,7 +649,7 @@ This work is licensed under <a href="http://creativecommons.org/licenses/by-nc-s
 <tr class="even">
 <td style="text-align: left;"><code>dplyr</code> (1.2.1)</td>
 <td style="text-align: left;"><code>e1071</code> (1.7-17)</td>
-<td style="text-align: left;"><code>earth</code> (5.3.5)</td>
+<td style="text-align: left;"><code>earth</code> (5.3.6)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>embed</code> (1.2.2)</td>
@@ -674,7 +683,7 @@ This work is licensed under <a href="http://creativecommons.org/licenses/by-nc-s
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>important</code> (0.2.1)</td>
-<td style="text-align: left;"><code>ipred</code> (0.9-15)</td>
+<td style="text-align: left;"><code>ipred</code> (0.9-16)</td>
 <td style="text-align: left;"><code>irlba</code> (2.3.7)</td>
 </tr>
 <tr class="even">
@@ -690,7 +699,7 @@ This work is licensed under <a href="http://creativecommons.org/licenses/by-nc-s
 <tr class="even">
 <td style="text-align: left;"><code>lme4</code> (2.0-6)</td>
 <td style="text-align: left;"><code>lorax</code> (0.1.0)</td>
-<td style="text-align: left;"><code>Matrix</code> (1.7-5)</td>
+<td style="text-align: left;"><code>Matrix</code> (1.7-6)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>mda</code> (0.5-5)</td>
@@ -708,7 +717,7 @@ This work is licensed under <a href="http://creativecommons.org/licenses/by-nc-s
 <td style="text-align: left;"><code>naniar</code> (1.1.0)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>nlme</code> (3.1-169)</td>
+<td style="text-align: left;"><code>nlme</code> (3.1-171)</td>
 <td style="text-align: left;"><code>pamr</code> (1.57)</td>
 <td style="text-align: left;"><code>parsnip</code> (1.6.0)</td>
 </tr>
@@ -729,7 +738,7 @@ This work is licensed under <a href="http://creativecommons.org/licenses/by-nc-s
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>rpart</code> (4.1.27)</td>
-<td style="text-align: left;"><code>rpart.plot</code> (3.1.4)</td>
+<td style="text-align: left;"><code>rpart.plot</code> (3.1.5)</td>
 <td style="text-align: left;"><code>rsample</code> (1.3.2)</td>
 </tr>
 <tr class="odd">
@@ -779,7 +788,7 @@ This work is licensed under <a href="http://creativecommons.org/licenses/by-nc-s
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>workflowsets</code> (1.1.1)</td>
-<td style="text-align: left;"><code>xgboost</code> (3.4.0.0)</td>
+<td style="text-align: left;"><code>xgboost</code> (3.2.1.1)</td>
 <td style="text-align: left;"><code>xrf</code> (0.3.1)</td>
 </tr>
 <tr class="odd">

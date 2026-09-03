@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -61,10 +64,10 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c7488dab8eb61c0b5a1577c7c12d4487.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a668b9be8a66a05ff54f7262d2bec69b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -458,7 +461,7 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 <div class="dev-preview-banner">
   <strong>Draft preview</strong>
-  <span>branch <code>residual-networks</code> at <code>db044d6</code></span>
+  <span>branch <code>residual-networks</code> at <code>e9080f3</code></span>
   <span>Not the published book —
     <a href="https://aml4td.org">read aml4td.org</a></span>
   <span><a href="https://dev.aml4td.org/">all previews</a></span>
@@ -515,7 +518,7 @@ window.Quarto = {
 <p>where values near zero indicate a symmetric distribution, positive values correspond to a right skew, and negative values left skew. The lot size data are significantly right-skewed (with a skewness value of 13.5). As previously mentioned, there are 2 samples in the training set that sit far beyond the mainstream of the data.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-ames-lot-area" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Four histograms of lot area arranged in a two-by-two grid. Panel (a) shows the original data, which is heavily right-skewed with a long tail extending toward large lot sizes. Panel (b) applies the Yeo-Johnson transformation, producing a more symmetric but still slightly skewed distribution. Panel (c) uses the percentile transformation, resulting in a roughly uniform distribution. Panel (d) applies ordered quantile normalization, yielding a symmetric bell-shaped distribution.">
+<div id="fig-ames-lot-area" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Four histograms of lot area arranged in a two-by-two grid. Panel (a) shows the original data, which is heavily right-skewed with a long tail extending toward large lot sizes. Panel (b) applies the Yeo-Johnson transformation, producing a more symmetric but still slightly skewed distribution. Panel (c) uses the percentile transformation, resulting in a roughly uniform distribution. Panel (d) applies ordered quantile normalization, yielding a symmetric bell-shaped distribution." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ames-lot-area-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="numeric-predictors_files/figure-html/fig-ames-lot-area-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Four histograms of lot area arranged in a two-by-two grid. Panel (a) shows the original data, which is heavily right-skewed with a long tail extending toward large lot sizes. Panel (b) applies the Yeo-Johnson transformation, producing a more symmetric but still slightly skewed distribution. Panel (c) uses the percentile transformation, resulting in a roughly uniform distribution. Panel (d) applies ordered quantile normalization, yielding a symmetric bell-shaped distribution.">
@@ -658,7 +661,7 @@ Table&nbsp;5.1: Examples of other families of transformations for dense numeric 
 <p><a href="#fig-standardization" class="quarto-xref">Figure&nbsp;<span>5.2</span></a>(b) shows the results of centering and scaling the gross living area predictor from the Ames data. Note that the shape of the distribution does not change; only the magnitude of the values is different.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-standardization" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Three histograms of gross living area arranged side by side. All three have the same right-skewed shape. Panel (a) shows the original values ranging roughly from 500 to 5000 square feet. Panel (b) is centered and scaled, shifting the x-axis to center on zero with a standard deviation of one. Panel (c) is range scaled, compressing values to the zero-to-one interval. The distribution shape is identical across all three panels; only the x-axis scale changes.">
+<div id="fig-standardization" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three histograms of gross living area arranged side by side. All three have the same right-skewed shape. Panel (a) shows the original values ranging roughly from 500 to 5000 square feet. Panel (b) is centered and scaled, shifting the x-axis to center on zero with a standard deviation of one. Panel (c) is range scaled, compressing values to the zero-to-one interval. The distribution shape is identical across all three panels; only the x-axis scale changes." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-standardization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="numeric-predictors_files/figure-html/fig-standardization-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:92.0%" alt="Three histograms of gross living area arranged side by side. All three have the same right-skewed shape. Panel (a) shows the original values ranging roughly from 500 to 5000 square feet. Panel (b) is centered and scaled, shifting the x-axis to center on zero with a standard deviation of one. Panel (c) is range scaled, compressing values to the zero-to-one interval. The distribution shape is identical across all three panels; only the x-axis scale changes.">
@@ -688,7 +691,7 @@ x^*_{ij}=\frac{x_{ij}}{\sum\limits^{p}_{j=1} x_{ij}^2}
 <p>The second panel of the data shows the same predictors <em>after</em> an orderNorm transformation. Note that, after this operation, the outlying values appear less extreme.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-ames-lot-living-area" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Three scatter plots of lot area versus gross living area arranged side by side. The left panel shows the raw data with a cluster of points in the lower-left and a handful of outlying points highlighted with a distinct shape far to the right or top. The middle panel applies an order-norm transformation, spreading the data more evenly and making the outlying points less extreme. The right panel applies the spatial sign transformation, projecting all points onto a circle centered at the origin so that the previously outlying points are no longer distributionally abnormal.">
+<div id="fig-ames-lot-living-area" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three scatter plots of lot area versus gross living area arranged side by side. The left panel shows the raw data with a cluster of points in the lower-left and a handful of outlying points highlighted with a distinct shape far to the right or top. The middle panel applies an order-norm transformation, spreading the data more evenly and making the outlying points less extreme. The right panel applies the spatial sign transformation, projecting all points onto a circle centered at the origin so that the previously outlying points are no longer distributionally abnormal." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ames-lot-living-area-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="numeric-predictors_files/figure-html/fig-ames-lot-living-area-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Three scatter plots of lot area versus gross living area arranged side by side. The left panel shows the raw data with a cluster of points in the lower-left and a handful of outlying points highlighted with a distinct shape far to the right or top. The middle panel applies an order-norm transformation, spreading the data more evenly and making the outlying points less extreme. The right panel applies the spatial sign transformation, projecting all points onto a circle centered at the origin so that the previously outlying points are no longer distributionally abnormal.">

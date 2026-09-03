@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -61,10 +64,10 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c7488dab8eb61c0b5a1577c7c12d4487.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a668b9be8a66a05ff54f7262d2bec69b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <meta name="shinylive:serviceworker_dir" content="..">
 <script src="../site_libs/quarto-contrib/shinylive-0.10.11/shinylive/load-shinylive-sw.js" type="module"></script>
 <script src="../site_libs/quarto-contrib/shinylive-0.10.11/shinylive/run-python-blocks.js" type="module"></script>
@@ -489,7 +492,7 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 <div class="dev-preview-banner">
   <strong>Draft preview</strong>
-  <span>branch <code>residual-networks</code> at <code>db044d6</code></span>
+  <span>branch <code>residual-networks</code> at <code>e9080f3</code></span>
   <span>Not the published book —
     <a href="https://aml4td.org">read aml4td.org</a></span>
   <span><a href="https://dev.aml4td.org/">all previews</a></span>
@@ -529,23 +532,23 @@ window.Quarto = {
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-small-forest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="vqrtnvyzch" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vqrtnvyzch table {
+<div id="aurwqgqvyd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#aurwqgqvyd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vqrtnvyzch thead, #vqrtnvyzch tbody, #vqrtnvyzch tfoot, #vqrtnvyzch tr, #vqrtnvyzch td, #vqrtnvyzch th {
+#aurwqgqvyd thead, #aurwqgqvyd tbody, #aurwqgqvyd tfoot, #aurwqgqvyd tr, #aurwqgqvyd td, #aurwqgqvyd th {
   border-style: none;
 }
 
-#vqrtnvyzch p {
+#aurwqgqvyd p {
   margin: 0;
   padding: 0;
 }
 
-#vqrtnvyzch .gt_table {
+#aurwqgqvyd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -571,12 +574,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#vqrtnvyzch .gt_caption {
+#aurwqgqvyd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vqrtnvyzch .gt_title {
+#aurwqgqvyd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -588,7 +591,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#vqrtnvyzch .gt_subtitle {
+#aurwqgqvyd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -600,7 +603,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#vqrtnvyzch .gt_heading {
+#aurwqgqvyd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -612,13 +615,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#vqrtnvyzch .gt_bottom_border {
+#aurwqgqvyd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vqrtnvyzch .gt_col_headings {
+#aurwqgqvyd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -633,7 +636,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#vqrtnvyzch .gt_col_heading {
+#aurwqgqvyd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -653,7 +656,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#vqrtnvyzch .gt_column_spanner_outer {
+#aurwqgqvyd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -665,15 +668,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#vqrtnvyzch .gt_column_spanner_outer:first-child {
+#aurwqgqvyd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vqrtnvyzch .gt_column_spanner_outer:last-child {
+#aurwqgqvyd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vqrtnvyzch .gt_column_spanner {
+#aurwqgqvyd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -685,11 +688,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#vqrtnvyzch .gt_spanner_row {
+#aurwqgqvyd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vqrtnvyzch .gt_group_heading {
+#aurwqgqvyd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -715,7 +718,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#vqrtnvyzch .gt_empty_group_heading {
+#aurwqgqvyd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -730,15 +733,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#vqrtnvyzch .gt_from_md > :first-child {
+#aurwqgqvyd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vqrtnvyzch .gt_from_md > :last-child {
+#aurwqgqvyd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vqrtnvyzch .gt_row {
+#aurwqgqvyd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -757,7 +760,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#vqrtnvyzch .gt_stub {
+#aurwqgqvyd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -770,7 +773,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#vqrtnvyzch .gt_stub_row_group {
+#aurwqgqvyd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -784,15 +787,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#vqrtnvyzch .gt_row_group_first td {
+#aurwqgqvyd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vqrtnvyzch .gt_row_group_first th {
+#aurwqgqvyd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vqrtnvyzch .gt_summary_row {
+#aurwqgqvyd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -802,16 +805,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#vqrtnvyzch .gt_first_summary_row {
+#aurwqgqvyd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vqrtnvyzch .gt_first_summary_row.thick {
+#aurwqgqvyd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vqrtnvyzch .gt_last_summary_row {
+#aurwqgqvyd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -821,7 +824,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#vqrtnvyzch .gt_grand_summary_row {
+#aurwqgqvyd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -831,7 +834,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#vqrtnvyzch .gt_first_grand_summary_row {
+#aurwqgqvyd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -841,7 +844,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#vqrtnvyzch .gt_last_grand_summary_row_top {
+#aurwqgqvyd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -851,11 +854,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#vqrtnvyzch .gt_striped {
+#aurwqgqvyd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vqrtnvyzch .gt_table_body {
+#aurwqgqvyd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -864,7 +867,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#vqrtnvyzch .gt_footnotes {
+#aurwqgqvyd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -878,7 +881,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#vqrtnvyzch .gt_footnote {
+#aurwqgqvyd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -887,7 +890,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#vqrtnvyzch .gt_sourcenotes {
+#aurwqgqvyd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -901,7 +904,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#vqrtnvyzch .gt_sourcenote {
+#aurwqgqvyd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -909,72 +912,72 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#vqrtnvyzch .gt_left {
+#aurwqgqvyd .gt_left {
   text-align: left;
 }
 
-#vqrtnvyzch .gt_center {
+#aurwqgqvyd .gt_center {
   text-align: center;
 }
 
-#vqrtnvyzch .gt_right {
+#aurwqgqvyd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vqrtnvyzch .gt_font_normal {
+#aurwqgqvyd .gt_font_normal {
   font-weight: normal;
 }
 
-#vqrtnvyzch .gt_font_bold {
+#aurwqgqvyd .gt_font_bold {
   font-weight: bold;
 }
 
-#vqrtnvyzch .gt_font_italic {
+#aurwqgqvyd .gt_font_italic {
   font-style: italic;
 }
 
-#vqrtnvyzch .gt_super {
+#aurwqgqvyd .gt_super {
   font-size: 65%;
 }
 
-#vqrtnvyzch .gt_footnote_marks {
+#aurwqgqvyd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vqrtnvyzch .gt_asterisk {
+#aurwqgqvyd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vqrtnvyzch .gt_indent_1 {
+#aurwqgqvyd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vqrtnvyzch .gt_indent_2 {
+#aurwqgqvyd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vqrtnvyzch .gt_indent_3 {
+#aurwqgqvyd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vqrtnvyzch .gt_indent_4 {
+#aurwqgqvyd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vqrtnvyzch .gt_indent_5 {
+#aurwqgqvyd .gt_indent_5 {
   text-indent: 25px;
 }
 
-#vqrtnvyzch .katex-display {
+#aurwqgqvyd .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#vqrtnvyzch div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#aurwqgqvyd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1070,23 +1073,23 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
 <div aria-describedby="tbl-split-2-x-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell plain" data-layout-align="center">
 <div class="cell-output-display">
-<div id="asrvhspvyd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#asrvhspvyd table {
+<div id="etcffiirxr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#etcffiirxr table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#asrvhspvyd thead, #asrvhspvyd tbody, #asrvhspvyd tfoot, #asrvhspvyd tr, #asrvhspvyd td, #asrvhspvyd th {
+#etcffiirxr thead, #etcffiirxr tbody, #etcffiirxr tfoot, #etcffiirxr tr, #etcffiirxr td, #etcffiirxr th {
   border-style: none;
 }
 
-#asrvhspvyd p {
+#etcffiirxr p {
   margin: 0;
   padding: 0;
 }
 
-#asrvhspvyd .gt_table {
+#etcffiirxr .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1112,12 +1115,12 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   border-left-color: #D3D3D3;
 }
 
-#asrvhspvyd .gt_caption {
+#etcffiirxr .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#asrvhspvyd .gt_title {
+#etcffiirxr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1129,7 +1132,7 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   border-bottom-width: 0;
 }
 
-#asrvhspvyd .gt_subtitle {
+#etcffiirxr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1141,7 +1144,7 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   border-top-width: 0;
 }
 
-#asrvhspvyd .gt_heading {
+#etcffiirxr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1153,13 +1156,13 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   border-right-color: #D3D3D3;
 }
 
-#asrvhspvyd .gt_bottom_border {
+#etcffiirxr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#asrvhspvyd .gt_col_headings {
+#etcffiirxr .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1174,7 +1177,7 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   border-right-color: #D3D3D3;
 }
 
-#asrvhspvyd .gt_col_heading {
+#etcffiirxr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1194,7 +1197,7 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   overflow-x: hidden;
 }
 
-#asrvhspvyd .gt_column_spanner_outer {
+#etcffiirxr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1206,15 +1209,15 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   padding-right: 4px;
 }
 
-#asrvhspvyd .gt_column_spanner_outer:first-child {
+#etcffiirxr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#asrvhspvyd .gt_column_spanner_outer:last-child {
+#etcffiirxr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#asrvhspvyd .gt_column_spanner {
+#etcffiirxr .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1226,11 +1229,11 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   width: 100%;
 }
 
-#asrvhspvyd .gt_spanner_row {
+#etcffiirxr .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#asrvhspvyd .gt_group_heading {
+#etcffiirxr .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1256,7 +1259,7 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   text-align: left;
 }
 
-#asrvhspvyd .gt_empty_group_heading {
+#etcffiirxr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1271,15 +1274,15 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   vertical-align: middle;
 }
 
-#asrvhspvyd .gt_from_md > :first-child {
+#etcffiirxr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#asrvhspvyd .gt_from_md > :last-child {
+#etcffiirxr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#asrvhspvyd .gt_row {
+#etcffiirxr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1298,7 +1301,7 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   overflow-x: hidden;
 }
 
-#asrvhspvyd .gt_stub {
+#etcffiirxr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1311,7 +1314,7 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   padding-right: 5px;
 }
 
-#asrvhspvyd .gt_stub_row_group {
+#etcffiirxr .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1325,15 +1328,15 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   vertical-align: top;
 }
 
-#asrvhspvyd .gt_row_group_first td {
+#etcffiirxr .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#asrvhspvyd .gt_row_group_first th {
+#etcffiirxr .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#asrvhspvyd .gt_summary_row {
+#etcffiirxr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1343,16 +1346,16 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   padding-right: 5px;
 }
 
-#asrvhspvyd .gt_first_summary_row {
+#etcffiirxr .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#asrvhspvyd .gt_first_summary_row.thick {
+#etcffiirxr .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#asrvhspvyd .gt_last_summary_row {
+#etcffiirxr .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1362,7 +1365,7 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   border-bottom-color: #D3D3D3;
 }
 
-#asrvhspvyd .gt_grand_summary_row {
+#etcffiirxr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1372,7 +1375,7 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   padding-right: 5px;
 }
 
-#asrvhspvyd .gt_first_grand_summary_row {
+#etcffiirxr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1382,7 +1385,7 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   border-top-color: #D3D3D3;
 }
 
-#asrvhspvyd .gt_last_grand_summary_row_top {
+#etcffiirxr .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1392,11 +1395,11 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   border-bottom-color: #D3D3D3;
 }
 
-#asrvhspvyd .gt_striped {
+#etcffiirxr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#asrvhspvyd .gt_table_body {
+#etcffiirxr .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1405,7 +1408,7 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   border-bottom-color: #D3D3D3;
 }
 
-#asrvhspvyd .gt_footnotes {
+#etcffiirxr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1419,7 +1422,7 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   border-right-color: #D3D3D3;
 }
 
-#asrvhspvyd .gt_footnote {
+#etcffiirxr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1428,7 +1431,7 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   padding-right: 5px;
 }
 
-#asrvhspvyd .gt_sourcenotes {
+#etcffiirxr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1442,7 +1445,7 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   border-right-color: #D3D3D3;
 }
 
-#asrvhspvyd .gt_sourcenote {
+#etcffiirxr .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1450,72 +1453,72 @@ Table&nbsp;19.1: A small sample of the forestation data that will be used to ill
   padding-right: 5px;
 }
 
-#asrvhspvyd .gt_left {
+#etcffiirxr .gt_left {
   text-align: left;
 }
 
-#asrvhspvyd .gt_center {
+#etcffiirxr .gt_center {
   text-align: center;
 }
 
-#asrvhspvyd .gt_right {
+#etcffiirxr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#asrvhspvyd .gt_font_normal {
+#etcffiirxr .gt_font_normal {
   font-weight: normal;
 }
 
-#asrvhspvyd .gt_font_bold {
+#etcffiirxr .gt_font_bold {
   font-weight: bold;
 }
 
-#asrvhspvyd .gt_font_italic {
+#etcffiirxr .gt_font_italic {
   font-style: italic;
 }
 
-#asrvhspvyd .gt_super {
+#etcffiirxr .gt_super {
   font-size: 65%;
 }
 
-#asrvhspvyd .gt_footnote_marks {
+#etcffiirxr .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#asrvhspvyd .gt_asterisk {
+#etcffiirxr .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#asrvhspvyd .gt_indent_1 {
+#etcffiirxr .gt_indent_1 {
   text-indent: 5px;
 }
 
-#asrvhspvyd .gt_indent_2 {
+#etcffiirxr .gt_indent_2 {
   text-indent: 10px;
 }
 
-#asrvhspvyd .gt_indent_3 {
+#etcffiirxr .gt_indent_3 {
   text-indent: 15px;
 }
 
-#asrvhspvyd .gt_indent_4 {
+#etcffiirxr .gt_indent_4 {
   text-indent: 20px;
 }
 
-#asrvhspvyd .gt_indent_5 {
+#etcffiirxr .gt_indent_5 {
   text-indent: 25px;
 }
 
-#asrvhspvyd .katex-display {
+#etcffiirxr .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#asrvhspvyd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#etcffiirxr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1584,23 +1587,23 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
 </div><div class="column" style="width:60%;">
 <div class="cell plain" data-layout-align="center">
 <div class="cell-output-display">
-<div id="ztnwwjufem" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ztnwwjufem table {
+<div id="jkdtnzhgva" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jkdtnzhgva table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ztnwwjufem thead, #ztnwwjufem tbody, #ztnwwjufem tfoot, #ztnwwjufem tr, #ztnwwjufem td, #ztnwwjufem th {
+#jkdtnzhgva thead, #jkdtnzhgva tbody, #jkdtnzhgva tfoot, #jkdtnzhgva tr, #jkdtnzhgva td, #jkdtnzhgva th {
   border-style: none;
 }
 
-#ztnwwjufem p {
+#jkdtnzhgva p {
   margin: 0;
   padding: 0;
 }
 
-#ztnwwjufem .gt_table {
+#jkdtnzhgva .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1626,12 +1629,12 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   border-left-color: #D3D3D3;
 }
 
-#ztnwwjufem .gt_caption {
+#jkdtnzhgva .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ztnwwjufem .gt_title {
+#jkdtnzhgva .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1643,7 +1646,7 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   border-bottom-width: 0;
 }
 
-#ztnwwjufem .gt_subtitle {
+#jkdtnzhgva .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1655,7 +1658,7 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   border-top-width: 0;
 }
 
-#ztnwwjufem .gt_heading {
+#jkdtnzhgva .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1667,13 +1670,13 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   border-right-color: #D3D3D3;
 }
 
-#ztnwwjufem .gt_bottom_border {
+#jkdtnzhgva .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ztnwwjufem .gt_col_headings {
+#jkdtnzhgva .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1688,7 +1691,7 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   border-right-color: #D3D3D3;
 }
 
-#ztnwwjufem .gt_col_heading {
+#jkdtnzhgva .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1708,7 +1711,7 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   overflow-x: hidden;
 }
 
-#ztnwwjufem .gt_column_spanner_outer {
+#jkdtnzhgva .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1720,15 +1723,15 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   padding-right: 4px;
 }
 
-#ztnwwjufem .gt_column_spanner_outer:first-child {
+#jkdtnzhgva .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ztnwwjufem .gt_column_spanner_outer:last-child {
+#jkdtnzhgva .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ztnwwjufem .gt_column_spanner {
+#jkdtnzhgva .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1740,11 +1743,11 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   width: 100%;
 }
 
-#ztnwwjufem .gt_spanner_row {
+#jkdtnzhgva .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ztnwwjufem .gt_group_heading {
+#jkdtnzhgva .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1770,7 +1773,7 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   text-align: left;
 }
 
-#ztnwwjufem .gt_empty_group_heading {
+#jkdtnzhgva .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1785,15 +1788,15 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   vertical-align: middle;
 }
 
-#ztnwwjufem .gt_from_md > :first-child {
+#jkdtnzhgva .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ztnwwjufem .gt_from_md > :last-child {
+#jkdtnzhgva .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ztnwwjufem .gt_row {
+#jkdtnzhgva .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1812,7 +1815,7 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   overflow-x: hidden;
 }
 
-#ztnwwjufem .gt_stub {
+#jkdtnzhgva .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1825,7 +1828,7 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   padding-right: 5px;
 }
 
-#ztnwwjufem .gt_stub_row_group {
+#jkdtnzhgva .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1839,15 +1842,15 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   vertical-align: top;
 }
 
-#ztnwwjufem .gt_row_group_first td {
+#jkdtnzhgva .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ztnwwjufem .gt_row_group_first th {
+#jkdtnzhgva .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ztnwwjufem .gt_summary_row {
+#jkdtnzhgva .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1857,16 +1860,16 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   padding-right: 5px;
 }
 
-#ztnwwjufem .gt_first_summary_row {
+#jkdtnzhgva .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ztnwwjufem .gt_first_summary_row.thick {
+#jkdtnzhgva .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ztnwwjufem .gt_last_summary_row {
+#jkdtnzhgva .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1876,7 +1879,7 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   border-bottom-color: #D3D3D3;
 }
 
-#ztnwwjufem .gt_grand_summary_row {
+#jkdtnzhgva .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1886,7 +1889,7 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   padding-right: 5px;
 }
 
-#ztnwwjufem .gt_first_grand_summary_row {
+#jkdtnzhgva .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1896,7 +1899,7 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   border-top-color: #D3D3D3;
 }
 
-#ztnwwjufem .gt_last_grand_summary_row_top {
+#jkdtnzhgva .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1906,11 +1909,11 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   border-bottom-color: #D3D3D3;
 }
 
-#ztnwwjufem .gt_striped {
+#jkdtnzhgva .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ztnwwjufem .gt_table_body {
+#jkdtnzhgva .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1919,7 +1922,7 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   border-bottom-color: #D3D3D3;
 }
 
-#ztnwwjufem .gt_footnotes {
+#jkdtnzhgva .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1933,7 +1936,7 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   border-right-color: #D3D3D3;
 }
 
-#ztnwwjufem .gt_footnote {
+#jkdtnzhgva .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1942,7 +1945,7 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   padding-right: 5px;
 }
 
-#ztnwwjufem .gt_sourcenotes {
+#jkdtnzhgva .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1956,7 +1959,7 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   border-right-color: #D3D3D3;
 }
 
-#ztnwwjufem .gt_sourcenote {
+#jkdtnzhgva .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1964,72 +1967,72 @@ Table&nbsp;19.2: Example notation for a binary split of an outcome with <span cl
   padding-right: 5px;
 }
 
-#ztnwwjufem .gt_left {
+#jkdtnzhgva .gt_left {
   text-align: left;
 }
 
-#ztnwwjufem .gt_center {
+#jkdtnzhgva .gt_center {
   text-align: center;
 }
 
-#ztnwwjufem .gt_right {
+#jkdtnzhgva .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ztnwwjufem .gt_font_normal {
+#jkdtnzhgva .gt_font_normal {
   font-weight: normal;
 }
 
-#ztnwwjufem .gt_font_bold {
+#jkdtnzhgva .gt_font_bold {
   font-weight: bold;
 }
 
-#ztnwwjufem .gt_font_italic {
+#jkdtnzhgva .gt_font_italic {
   font-style: italic;
 }
 
-#ztnwwjufem .gt_super {
+#jkdtnzhgva .gt_super {
   font-size: 65%;
 }
 
-#ztnwwjufem .gt_footnote_marks {
+#jkdtnzhgva .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ztnwwjufem .gt_asterisk {
+#jkdtnzhgva .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ztnwwjufem .gt_indent_1 {
+#jkdtnzhgva .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ztnwwjufem .gt_indent_2 {
+#jkdtnzhgva .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ztnwwjufem .gt_indent_3 {
+#jkdtnzhgva .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ztnwwjufem .gt_indent_4 {
+#jkdtnzhgva .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ztnwwjufem .gt_indent_5 {
+#jkdtnzhgva .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ztnwwjufem .katex-display {
+#jkdtnzhgva .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ztnwwjufem div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#jkdtnzhgva div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
