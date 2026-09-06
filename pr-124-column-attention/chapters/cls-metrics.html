@@ -482,7 +482,7 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 <div class="dev-preview-banner">
   <strong>Draft preview</strong>
-  <span>branch <code>attention-pr-2</code> at <code>fda08e8</code></span>
+  <span>branch <code>attention-pr-2</code> at <code>ddccfc7</code></span>
   <span>Not the published book —
     <a href="https://aml4td.org">read aml4td.org</a></span>
   <span><a href="https://dev.aml4td.org/">all previews</a></span>
@@ -1722,7 +1722,7 @@ Table&nbsp;15.3: Validation set Brier scores for the original model predictions 
 
 </div>
 </div>
-<p>There are other approaches for improving calibration. One is isotonic regression <span class="citation" data-cites="isotonic">(<a href="#ref-isotonic" role="doc-biblioref">Zadrozny and Elkan 2002</a>)</span>. This tool fits a model that will generate monotonic, non-decreasing, predictions: <span class="math inline">\hat{y}_i \le \hat{y}_{i+ 1}</span> when <span class="math inline">x_i \le x_{i+ 1}</span>. Multiple methods exist to create such models but the most straightforward approach is the pooled-adjacent violators algorithm (PAVA) of <span class="citation" data-cites="pava">Ayer et al. (<a href="#ref-pava" role="doc-biblioref">1955</a>)</span>. This method adjusts a sequence of data points that are not monotonically increasing to be so. For example, <a href="#tbl-isotonic" class="quarto-xref">Table&nbsp;<span>15.4</span></a> shows an example where the rows are ordered by their model’s predicted probabilities. One column shows a binary indicator for class <code>A</code>. The first three rows have the same outcome (<code>B</code>) but the fourth row is actually class <code>A</code>. The PAVA algorithm then takes the averages of the binary indicators that bracket the discordant value, and all of these probability estimates are given the average value (1/3). From the table, it is clear that there are three possible probability estimates after isotonic regression is used.</p>
+<p>There are other approaches for improving calibration. One is isotonic regression <span class="citation" data-cites="isotonic">(<a href="#ref-isotonic" role="doc-biblioref">Zadrozny and Elkan 2002</a>)</span>. This tool fits a model that will generate monotonic, non-decreasing, predictions: <span class="math inline">\hat{y}_i \le \hat{y}_{i+ 1}</span> when <span class="math inline">x_i \le x_{i+ 1}</span>. Multiple methods exist to create such models but the most straightforward approach is the pooled-adjacent violators algorithm (PAVA) of <span class="citation" data-cites="pava">Miriam et al. (<a href="#ref-pava" role="doc-biblioref">1955</a>)</span>. This method adjusts a sequence of data points that are not monotonically increasing to be so. For example, <a href="#tbl-isotonic" class="quarto-xref">Table&nbsp;<span>15.4</span></a> shows an example where the rows are ordered by their model’s predicted probabilities. One column shows a binary indicator for class <code>A</code>. The first three rows have the same outcome (<code>B</code>) but the fourth row is actually class <code>A</code>. The PAVA algorithm then takes the averages of the binary indicators that bracket the discordant value, and all of these probability estimates are given the average value (1/3). From the table, it is clear that there are three possible probability estimates after isotonic regression is used.</p>
 <div class="columns">
 <div class="column" style="width:25%;">
 
@@ -2114,11 +2114,8 @@ D = \left(\prod_{i=1}^q d_i\right)^{1/q}
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-pava" class="csl-entry" role="listitem">
-Ayer, M, H Brunk, G Ewing, W Reid, and E Silverman. 1955. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=An+Empirical+Distribution+Function+for+Sampling+with+Incomplete+Information&amp;as_ylo=1955&amp;as_yhi=1955&amp;btnG=">An Empirical Distribution Function for Sampling with Incomplete Information</a>.”</span> <em>The Annals of Mathematical Statistics</em> 26 (4): 641–47.
-</div>
 <div id="ref-bella2013effect" class="csl-entry" role="listitem">
-Bella, A, C Ferri, J Hernandez-Orallo, and M Ramirez-Quintana. 2013. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=On+the+effect+of+calibration+in+classifier+combination&amp;as_ylo=2013&amp;as_yhi=2013&amp;btnG=">On the Effect of Calibration in Classifier Combination</a>.”</span> <em>Applied Intelligence</em> 38 (4): 566–85.
+Bella, A, C Ferri, J Hernandez-Orallo, and Maria J Ramirez-Quintana. 2013. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=On+the+effect+of+calibration+in+classifier+combination&amp;as_ylo=2013&amp;as_yhi=2013&amp;btnG=">On the Effect of Calibration in Classifier Combination</a>.”</span> <em>Applied Intelligence</em> 38 (4): 566–85.
 </div>
 <div id="ref-corral2019coagulation" class="csl-entry" role="listitem">
 Bobadilla, C, R Lorza, R García, F Gómez, and E González. 2019. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Coagulation+determination+of+key+operating+parameters+by+multi+response+surface+methodology+using+desirability+functions&amp;as_ylo=2019&amp;as_yhi=2019&amp;btnG=">Coagulation: Determination of Key Operating Parameters by Multi-Response Surface Methodology Using Desirability Functions</a>.”</span> <em>Water</em> 11 (2): 398.
@@ -2136,13 +2133,13 @@ Clopper, C, and E Pearson. 1934. <span>“<a href="https://scholar.google.com/sc
 Cohen, J. 1960. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=A+Coefficient+of+Agreement+for+Nominal+Data&amp;as_ylo=1960&amp;as_yhi=1960&amp;btnG=">A Coefficient of Agreement for Nominal Data</a>.”</span> <em>Educational and Psychological Measurement</em> 20: 37–46.
 </div>
 <div id="ref-cohen1968weighted" class="csl-entry" role="listitem">
-Cohen, J. 1968. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Weighted+Kappa+Nominal+scale+agreement+provision+for+scaled+disagreement+or+partial+credit+&amp;as_ylo=1968&amp;as_yhi=1968&amp;btnG=">Weighted <span>Kappa</span>: Nominal Scale Agreement Provision for Scaled Disagreement or Partial Credit.</a>”</span> <em>Psychological Bulletin</em> 70 (4): 213.
+Cohen, J. 1968. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Weighted+kappa+Nominal+scale+agreement+provision+for+scaled+disagreement+or+partial+credit+&amp;as_ylo=1968&amp;as_yhi=1968&amp;btnG=">Weighted Kappa: Nominal Scale Agreement Provision for Scaled Disagreement or Partial Credit.</a>”</span> <em>Psychological Bulletin</em> 70 (4): 213.
 </div>
 <div id="ref-constantinou2012solving" class="csl-entry" role="listitem">
 Constantinou, A, and N Fenton. 2012. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Solving+the+problem+of+inadequate+scoring+rules+for+assessing+probabilistic+football+forecast+models&amp;as_ylo=2012&amp;as_yhi=2012&amp;btnG=">Solving the Problem of Inadequate Scoring Rules for Assessing Probabilistic Football Forecast Models</a>.”</span> <em>Journal of Quantitative Analysis in Sports</em> 8 (1).
 </div>
 <div id="ref-davis2006relationship" class="csl-entry" role="listitem">
-Davis, J, and M Goadrich. 2006. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=The+relationship+between+Precision+Recall+and+ROC+curves&amp;as_ylo=2006&amp;as_yhi=2006&amp;btnG=">The Relationship Between Precision-Recall and ROC Curves</a>.”</span> In <em>Proceedings of the 23rd International Conference on Machine Learning</em>, 233–40.
+Davis, J, and M Goadrich. 2006. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=The+relationship+between+Precision+Recall+and+ROC+curves&amp;as_ylo=2006&amp;as_yhi=2006&amp;btnG=">The Relationship Between Precision-Recall and <span>ROC</span> Curves</a>.”</span> In <em>Proceedings of the 23rd International Conference on Machine Learning</em>, 233–40.
 </div>
 <div id="ref-delgado2019cohen" class="csl-entry" role="listitem">
 Delgado, R, and XA Tibau. 2019. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Why+Cohen+s+Kappa+should+be+avoided+as+performance+measure+in+classification&amp;as_ylo=2019&amp;as_yhi=2019&amp;btnG=">Why Cohen’s Kappa Should Be Avoided as Performance Measure in Classification</a>.”</span> <em>PloS One</em> 14 (9): e0222916.
@@ -2162,14 +2159,14 @@ Gneiting, T, and A Raftery. 2007. <span>“<a href="https://scholar.google.com/s
 <div id="ref-guggenmoos1996meaning" class="csl-entry" role="listitem">
 Guggenmoos-Holzmann, I. 1996. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=The+meaning+of+kappa+probabilistic+concepts+of+reliability+and+validity+revisited&amp;as_ylo=1996&amp;as_yhi=1996&amp;btnG=">The Meaning of Kappa: Probabilistic Concepts of Reliability and Validity Revisited</a>.”</span> <em>Journal of Clinical Epidemiology</em> 49 (7): 775–82.
 </div>
-<div id="ref-Hand2001us" class="csl-entry" role="listitem">
-Hand, D, and R Till. 2001b. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=A+Simple+Generalisation+of+the+Area+Under+the+ROC+Curve+for+Multiple+Class+Classification+Problems&amp;as_ylo=2001&amp;as_yhi=2001&amp;btnG=">A Simple Generalisation of the Area Under the ROC Curve for Multiple Class Classification Problems</a>.”</span> <em>Machine Learning</em> 45 (2): 171–86.
-</div>
 <div id="ref-hand2001simple" class="csl-entry" role="listitem">
-Hand, D, and R Till. 2001a. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=A+simple+generalisation+of+the+area+under+the+ROC+curve+for+multiple+class+classification+problems&amp;as_ylo=2001&amp;as_yhi=2001&amp;btnG=">A Simple Generalisation of the Area Under the ROC Curve for Multiple Class Classification Problems</a>.”</span> <em>Machine Learning</em> 45: 171–86.
+Hand, D, and R Till. 2001a. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=A+simple+generalisation+of+the+area+under+the+ROC+curve+for+multiple+class+classification+problems&amp;as_ylo=2001&amp;as_yhi=2001&amp;btnG=">A Simple Generalisation of the Area Under the <span>ROC</span> Curve for Multiple Class Classification Problems</a>.”</span> <em>Machine Learning</em> 45: 171–86.
+</div>
+<div id="ref-Hand2001us" class="csl-entry" role="listitem">
+Hand, D, and R Till. 2001b. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=A+Simple+Generalisation+of+the+Area+Under+the+ROC+Curve+for+Multiple+Class+Classification+Problems&amp;as_ylo=2001&amp;as_yhi=2001&amp;btnG=">A Simple Generalisation of the Area Under the <span>ROC</span> Curve for Multiple Class Classification Problems</a>.”</span> <em>Machine Learning</em> 45 (2): 171–86.
 </div>
 <div id="ref-Hanley1982uc" class="csl-entry" role="listitem">
-Hanley, J, and B McNeil. 1982. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=The+Meaning+and+Use+of+the+Area+under+a+Receiver+Operating+ROC+Curvel+Characteristic&amp;as_ylo=1982&amp;as_yhi=1982&amp;btnG=">The Meaning and Use of the Area Under a Receiver Operating (ROC) Curvel Characteristic</a>.”</span> <em>Radiology</em> 143 (1): 29–36.
+Hanley, J, and B McNeil. 1982. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=The+Meaning+and+Use+of+the+Area+under+a+Receiver+Operating+ROC+Curvel+Characteristic&amp;as_ylo=1982&amp;as_yhi=1982&amp;btnG=">The Meaning and Use of the Area Under a Receiver Operating (<span>ROC</span>) Curvel Characteristic</a>.”</span> <em>Radiology</em> 143 (1): 29–36.
 </div>
 <div id="ref-harrington1965desirability" class="csl-entry" role="listitem">
 Harrington, E. 1965. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=The+desirability+function&amp;as_ylo=1965&amp;as_yhi=1965&amp;btnG=">The Desirability Function</a>.”</span> <em>Industrial Quality Control</em> 21 (10): 494–98.
@@ -2184,7 +2181,7 @@ Karl, F, T Pielok, J Moosbauer, F Pfisterer, S Coors, M Binder, L Schneider, et 
 Kruppa, J, Y Liu, HC Diener, T Holste, R Weimar, I Konig, and A Ziegler. 2014. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Probability+estimation+with+machine+learning+methods+for+dichotomous+and+multicategory+outcome+Applications&amp;as_ylo=2014&amp;as_yhi=2014&amp;btnG=">Probability Estimation with Machine Learning Methods for Dichotomous and Multicategory Outcome: Applications</a>.”</span> <em>Biometrical Journal</em> 56 (4): 564–83.
 </div>
 <div id="ref-Kuhn2016" class="csl-entry" role="listitem">
-Kuhn, M. 2016. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Nonclinical+Statistics+for+Pharmaceutical+and+Biotechnology+Industries&amp;as_ylo=2016&amp;as_yhi=2016&amp;btnG=">Nonclinical Statistics for Pharmaceutical and Biotechnology Industries</a>.”</span> In, edited by L Zhang, 141–55. Springer International Publishing.
+Kuhn, M. 2016. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Quantitative+Structure+Activity+Relationship+Modeling+and+Cheminformatics&amp;as_ylo=2016&amp;as_yhi=2016&amp;btnG=">Quantitative-Structure Activity Relationship Modeling and Cheminformatics</a>.”</span> In <em>Nonclinical Statistics for Pharmaceutical and Biotechnology Industries</em>, edited by L Zhang, 141–55. Springer International Publishing.
 </div>
 <div id="ref-kuhn2000incorporating" class="csl-entry" role="listitem">
 Kuhn, M, WH Carter, and R Myers. 2000. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Incorporating+noise+factors+into+experiments+with+censored+data&amp;as_ylo=2000&amp;as_yhi=2000&amp;btnG=">Incorporating Noise Factors into Experiments with Censored Data</a>.”</span> <em>Technometrics</em> 42 (4): 376–83.
@@ -2205,10 +2202,13 @@ Maglich, J, M Kuhn, R Chapin, and M Pletcher. 2014. <span>“<a href="https://sc
 Matthews, B. W. 1975. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Comparison+of+the+predicted+and+observed+secondary+structure+of+T4+phage+lysozyme&amp;as_ylo=1975&amp;as_yhi=1975&amp;btnG=">Comparison of the Predicted and Observed Secondary Structure of T4 Phage Lysozyme</a>.”</span> <em>Biochimica Et Biophysica Acta (BBA) - Protein Structure</em> 405 (2): 442–51.
 </div>
 <div id="ref-McClish" class="csl-entry" role="listitem">
-McClish, D. 1989. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Analyzing+a+Portion+of+the+ROC+Curve&amp;as_ylo=1989&amp;as_yhi=1989&amp;btnG=">Analyzing a Portion of the ROC Curve</a>.”</span> <em>Medical Decision Making</em> 9: 190–95.
+McClish, D. 1989. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Analyzing+a+Portion+of+the+ROC+Curve&amp;as_ylo=1989&amp;as_yhi=1989&amp;btnG=">Analyzing a Portion of the <span>ROC</span> Curve</a>.”</span> <em>Medical Decision Making</em> 9: 190–95.
 </div>
 <div id="ref-meeker2017statistical" class="csl-entry" role="listitem">
 Meeker, W, G Hahn, and L Escobar. 2017. <em>Statistical Intervals: A Guide for Practitioners and Researchers</em>. Vol. 541. John Wiley &amp; Sons.
+</div>
+<div id="ref-pava" class="csl-entry" role="listitem">
+Miriam, A, H Brunk, G Ewing, W Reid, and E Silverman. 1955. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=An+Empirical+Distribution+Function+for+Sampling+with+Incomplete+Information&amp;as_ylo=1955&amp;as_yhi=1955&amp;btnG=">An Empirical Distribution Function for Sampling with Incomplete Information</a>.”</span> <em>The Annals of Mathematical Statistics</em> 26 (4): 641–47.
 </div>
 <div id="ref-murphy1970ranked" class="csl-entry" role="listitem">
 Murphy, A. 1970. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=The+ranked+probability+score+and+the+probability+score+A+comparison&amp;as_ylo=1970&amp;as_yhi=1970&amp;btnG=">The Ranked Probability Score and the Probability Score: A Comparison</a>.”</span> <em>Monthly Weather Review</em> 98 (12): 917–24.
@@ -2229,7 +2229,7 @@ Ozenne, B, F Subtil, and D Maucort-Boulch. 2015. <span>“<a href="https://schol
 Platt, J. 1999. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Probabilistic+outputs+for+support+vector+machines+and+comparisons+to+regularized+likelihood+methods&amp;as_ylo=1999&amp;as_yhi=1999&amp;btnG=">Probabilistic Outputs for Support Vector Machines and Comparisons to Regularized Likelihood Methods</a>.”</span> <em>Advances in Large Margin Classifiers</em> 10 (3): 61–74.
 </div>
 <div id="ref-saito2015precision" class="csl-entry" role="listitem">
-Saito, T, and M Rehmsmeier. 2015. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=The+precision+recall+plot+is+more+informative+than+the+ROC+plot+when+evaluating+binary+classifiers+on+imbalanced+datasets&amp;as_ylo=2015&amp;as_yhi=2015&amp;btnG=">The Precision-Recall Plot Is More Informative Than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets</a>.”</span> <em>PloS One</em> 10 (3): e0118432.
+Saito, T, and M Rehmsmeier. 2015. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=The+precision+recall+plot+is+more+informative+than+the+ROC+plot+when+evaluating+binary+classifiers+on+imbalanced+datasets&amp;as_ylo=2015&amp;as_yhi=2015&amp;btnG=">The Precision-Recall Plot Is More Informative Than the <span>ROC</span> Plot When Evaluating Binary Classifiers on Imbalanced Datasets</a>.”</span> <em>PloS One</em> 10 (3): e0118432.
 </div>
 <div id="ref-sanders1963subjective" class="csl-entry" role="listitem">
 Sanders, F. 1963. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=On+subjective+probability+forecasting&amp;as_ylo=1963&amp;as_yhi=1963&amp;btnG=">On Subjective Probability Forecasting</a>.”</span> <em>Journal of Applied Meteorology and Climatology</em> 2 (2): 191–201.
@@ -2247,7 +2247,7 @@ Thompson, D, and S Walter. 1988. <span>“<a href="https://scholar.google.com/sc
 US Department of Defense. 1980. <em><a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Military+Standard+Procedures+for+Performing+a+Failure+Mode+Effects+and+Criticality+Analysis+MIL+STD+1629A+&amp;as_ylo=1980&amp;as_yhi=1980&amp;btnG=">Military Standard: Procedures for Performing a Failure Mode, Effects, and Criticality Analysis (<span>MIL-STD-1629A</span>)</a></em>.
 </div>
 <div id="ref-wager2010moving" class="csl-entry" role="listitem">
-Wager, T, X Hou, P Verhoest, and A Villalobos. 2010. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Moving+beyond+rules+the+development+of+a+central+nervous+system+multiparameter+optimization+CNS+MPO+approach+to+enable+alignment+of+druglike+properties&amp;as_ylo=2010&amp;as_yhi=2010&amp;btnG=">Moving Beyond Rules: The Development of a Central Nervous System Multiparameter Optimization (CNS MPO) Approach to Enable Alignment of Druglike Properties</a>.”</span> <em>ACS Chemical Neuroscience</em> 1 (6): 435–49.
+Wager, T, X Hou, P Verhoest, and A Villalobos. 2010. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Moving+beyond+rules+the+development+of+a+central+nervous+system+multiparameter+optimization+CNS+MPO+approach+to+enable+alignment+of+druglike+properties&amp;as_ylo=2010&amp;as_yhi=2010&amp;btnG=">Moving Beyond Rules: The Development of a Central Nervous System Multiparameter Optimization (<span>CNS</span> <span>MPO</span>) Approach to Enable Alignment of Druglike Properties</a>.”</span> <em>ACS Chemical Neuroscience</em> 1 (6): 435–49.
 </div>
 <div id="ref-wagner2021mushroom" class="csl-entry" role="listitem">
 Wagner, D, D Heider, and G Hattab. 2021. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Mushroom+data+creation+curation+and+simulation+to+support+classification+tasks&amp;as_ylo=2021&amp;as_yhi=2021&amp;btnG=">Mushroom Data Creation, Curation, and Simulation to Support Classification Tasks</a>.”</span> <em>Scientific Reports</em> 11 (1): 8134.
@@ -2262,7 +2262,7 @@ Youden, W. 1950. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;
 Zadrozny, B. 2001. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Reducing+multiclass+to+binary+by+coupling+probability+estimates&amp;as_ylo=2001&amp;as_yhi=2001&amp;btnG=">Reducing Multiclass to Binary by Coupling Probability Estimates</a>.”</span> In <em>Advances in Neural Information Processing Systems</em>, edited by T Dietterich, S Becker, and Z Ghahramani. Vol. 14. MIT Press.
 </div>
 <div id="ref-isotonic" class="csl-entry" role="listitem">
-Zadrozny, B, and C Elkan. 2002. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Transforming+Classifier+Scores+into+Accurate+Multiclass+Probability+Estimates&amp;as_ylo=2002&amp;as_yhi=2002&amp;btnG=">Transforming Classifier Scores into Accurate Multiclass Probability Estimates</a>.”</span> In <em>Proceedings of the Eighth ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>, 694–99. New York, NY, USA: Association for Computing Machinery.
+Zadrozny, B, and C Elkan. 2002. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Transforming+Classifier+Scores+into+Accurate+Multiclass+Probability+Estimates&amp;as_ylo=2002&amp;as_yhi=2002&amp;btnG=">Transforming Classifier Scores into Accurate Multiclass Probability Estimates</a>.”</span> In <em>Proceedings of the Eighth <span>ACM</span> <span>SIGKDD</span> International Conference on Knowledge Discovery and Data Mining</em>, 694–99. New York, NY, USA: Association for Computing Machinery.
 </div>
 <div id="ref-NEURIPS2021bbc92a64" class="csl-entry" role="listitem">
 Zhao, S, M Kim, R Sahoo, T Ma, and S Ermon. 2021. <span>“<a href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C7&amp;q=Calibrating+Predictions+to+Decisions+A+Novel+Approach+to+Multi+Class+Calibration&amp;as_ylo=2021&amp;as_yhi=2021&amp;btnG=">Calibrating Predictions to Decisions: A Novel Approach to Multi-Class Calibration</a>.”</span> In <em>Advances in Neural Information Processing Systems</em>, edited by M Ranzato, A Beygelzimer, Y Dauphin, P Liang, and J Wortman Vaughan, 34:22313–24. Curran Associates, Inc.
